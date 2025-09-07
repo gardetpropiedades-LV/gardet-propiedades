@@ -1,0 +1,4 @@
+[
+  { "id":"neohaus-vitacura","nombre":"Neohaus Vitacura","ubicacion":"Vitacura, Santiago","estado":"En venta","tipologias":"1D–3D","desde_uf":9900,"permite_renta_corta":true,"pie_en_cuotas":"hasta 60 sin interés","fotos":["assets/fotos/neohaus_p1.jpg"],"descripcion":"Proyecto de alto estándar con excelente conectividad." },
+  { "id":"eco-cerrillos","nombre":"Eco Cerrillos","ubicacion":"Cerrillos, Santiago","estado":"Entrega inmediata","tipologias":"1D–2D","desde_uf":2300,"permite_renta_corta":false,"pie_en_cuotas":"sí","fotos":["assets/fotos/ecoc1.jpg"],"descripcion":"Buena relación precio/ubicación, ideal para inversión." }
+]

@@ -1,0 +1,4 @@
+[
+  { "id":"neohaus-vitacura-1d","title":"Neohaus Vitacura — 1D/1B","tipo":"Departamento","operacion":"venta","comuna":"Vitacura","precio_uf":9900,"superficie_util":45,"superficie_total":52,"dormitorios":1,"banos":1,"estacionamientos":1,"fecha_publicacion":"2025-09-01","fotos":["assets/fotos/neohaus1.jpg"],"descripcion":"Excelente ubicación, terminaciones de alto estándar." },
+  { "id":"bodega-kennedy","title":"Bodega en Kennedy — 8m²","tipo":"Bodega","operacion":"arriendo","comuna":"Las Condes","precio_uf":5,"superficie_util":8,"superficie_total":8,"dormitorios":0,"banos":0,"estacionamientos":0,"fecha_publicacion":"2025-09-07","fotos":["assets/fotos/bodega1.jpg"],"descripcion":"Bodega segura en edificio moderno." }
+]

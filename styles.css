@@ -1,0 +1,14 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&family=Poppins:wght@400;600;700&display=swap');
+:root { --color-primary:#CBA36C; --color-primary-dark:#B48A52; --color-dark:#1C1C1C; --color-light:#FFFFFF; --color-gray:#F5F5F5; }
+body { margin:0; font-family:'Open Sans',sans-serif; background:var(--color-gray); color:var(--color-dark);}
+h1,h2,h3 { font-family:'Poppins',sans-serif;}
+.navbar {background:var(--color-light);padding:1rem 2rem;display:flex;justify-content:space-between;box-shadow:0 2px 5px rgba(0,0,0,.1);}
+.logo {height:50px;}
+.navbar ul{display:flex;list-style:none;gap:1.5rem;}
+.navbar a{text-decoration:none;color:var(--color-dark);font-weight:600;}
+.hero{background:#CBA36C;color:var(--color-light);padding:100px 20px;text-align:center;}
+.btn{background:var(--color-primary);color:white;padding:12px 20px;border-radius:8px;text-decoration:none;font-weight:bold;margin:10px;}
+.btn:hover{background:var(--color-primary-dark);}
+.cta{text-align:center;margin:50px auto;}
+footer{background:var(--color-dark);color:white;text-align:center;padding:20px;}
+.btn-wsp{position:fixed;bottom:20px;right:20px;background:#25D366;color:white;border-radius:50%;padding:15px;text-decoration:none;font-size:20px;}
