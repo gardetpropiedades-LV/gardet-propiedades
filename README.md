@@ -9,3 +9,5 @@ Sitio oficial de Gardet Propiedades.
 - Logo: assets/logo.png
 - Colores/fuentes: editar styles.css
 - Bot de ABACUS: pegar script antes de </body> en index.html
+- ---
+Última actualización para forzar deploy 🚀
