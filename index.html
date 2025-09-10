@@ -3,38 +3,86 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Gardet Propiedades — Encuentra tu próximo hogar</title>
-  <meta name="description" content="Arriendos, ventas y proyectos inmobiliarios en Santiago. Encuentra tu próximo hogar con Gardet Propiedades.">
+  <title>Gardet Propiedades – Encuentra tu próximo hogar</title>
+  <meta name="description" content="Arriendos, ventas y proyectos inmobiliarios en Chile. Invierte o encuentra tu próximo hogar con Gardet Propiedades.">
   <link rel="stylesheet" href="styles.css">
 </head>
-<a href="https://wa.me/569XXXXXXXX" class="btn-wsp" target="_blank">
-  <img src="assets/whatsapp.svg" alt="WhatsApp">
-</a>
 <body>
-  <nav class="navbar">
-    <img src="assets/logo.png" alt="Gardet Propiedades" class="logo">
-    <ul>
-      <li><a href="arriendos.html">Arriendos</a></li>
-      <li><a href="venta.html">Venta</a></li>
-      <li><a href="proyectos.html">Proyectos</a></li>
-      <li><a href="contacto.html">Contacto</a></li>
-    </ul>
-  </nav>
-  <header class="hero">
+
+  <!-- NAVBAR -->
+  <header>
+    <nav class="navbar">
+      <div class="navbar-logo">
+        <a href="index.html">
+          <img src="assets/logo.png" alt="Gardet Propiedades">
+        </a>
+      </div>
+      <ul class="navbar-links">
+        <li><a href="arriendos.html">Arriendos</a></li>
+        <li><a href="venta.html">Ventas</a></li>
+        <li><a href="proyectos.html">Proyectos</a></li>
+        <li><a href="contacto.html">Contacto</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero">
     <h1>Encuentra tu próximo hogar o invierte con Gardet</h1>
     <p>Arriendos • Ventas • Proyectos Inmobiliarios</p>
-  </header>
-  <section class="cta">
-    <h2>Explora nuestras opciones</h2>
-    <a href="arriendos.html" class="btn">Ver Arriendos</a>
-    <a href="venta.html" class="btn">Ver Ventas</a>
-    <a href="proyectos.html" class="btn">Ver Proyectos</a>
   </section>
+
+  <!-- BUSCADOR -->
+  <section class="search-box">
+    <form>
+      <select name="operacion">
+        <option value="venta">Venta</option>
+        <option value="arriendo">Arriendo</option>
+      </select>
+
+      <select name="tipo">
+        <option value="departamento">Departamentos</option>
+        <option value="casa">Casas</option>
+        <option value="oficina">Oficinas</option>
+        <option value="bodega">Bodegas</option>
+      </select>
+
+      <div class="search-input">
+        <input type="text" placeholder="Ingresa comuna o ciudad">
+        <button type="submit" class="search-btn">🔍</button>
+      </div>
+
+      <label class="toggle">
+        <input type="checkbox" name="proyectos">
+        <span>Proyectos</span>
+      </label>
+
+      <button type="submit" class="btn-search">Buscar</button>
+      <button type="button" class="btn-map">Buscar en Mapa</button>
+    </form>
+  </section>
+
+  <!-- CTA (Explora opciones) -->
+  <section>
+    <h2 style="text-align:center; margin-top:50px;">Explora nuestras opciones</h2>
+    <div class="options">
+      <a href="arriendos.html">Ver Arriendos</a>
+      <a href="venta.html">Ver Ventas</a>
+      <a href="proyectos.html">Ver Proyectos</a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
   <footer>
     <p>Gardet Propiedades © 2025 — Todos los derechos reservados</p>
   </footer>
-  <a href="https://wa.me/56987829204" class="btn-wsp">💬 WhatsApp</a>
-  <!-- Espacio para ABACUS BOT -->
+
+  <!-- BOTÓN WHATSAPP -->
+  <a href="https://wa.me/56987829204" class="btn-wsp" target="_blank">
+    <img src="assets/whatsapp.svg" alt="WhatsApp">
+  </a>
+
+  <!-- Script para funcionalidades -->
   <script src="app.js"></script>
 </body>
 </html>
