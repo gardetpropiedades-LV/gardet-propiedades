@@ -23,14 +23,15 @@
     "superficie_total": 140,
     "Privados": 5,
     "banos": 3
+    "estado": "arrendado"
   },
   {
     "id": "puerto-velero-penthouse",
     "title": "Puerto Velero Penthouse",
     "tipo": "Departamento",
-    "operacion": "arriendo",
+    "operacion": "arriendo temporal",
     "comuna": "Coquimbo",
-    "precio_uf": 80,
+    "precio_$": 600.000,
     "superficie_util": 231,
     "superficie_total": 366.66,
     "dormitorios": 5,
@@ -103,7 +104,7 @@
     "tipo": "Departamento",
     "operacion": "proyecto",
     "comuna": "Lo Barnechea",
-    "precio_uf": 6056,
+    "precio_uf": 5500,
     "superficie_util": 40,
     "superficie_total": 100,
     "dormitorios": "1-2",
