@@ -99,4 +99,12 @@
   },
   {
     "id": "neohaus-la-dehesa",
-    "title":
+    "title": "Neohaus La Dehesa",
+    "tipo": "Departamento",
+    "operacion": "proyecto",
+    "comuna": "Lo Barnechea",
+    "precio_uf": 6056,
+    "superficie_util": 40,
+    "superficie_total": 100,
+    "dormitorios": "1-2",
+    "banos": "1-2"
