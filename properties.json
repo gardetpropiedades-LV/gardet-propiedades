@@ -1,4 +1,74 @@
 [
-  { "id":"neohaus-vitacura-1d","title":"Neohaus Vitacura — 1D/1B","tipo":"Departamento","operacion":"venta","comuna":"Vitacura","precio_uf":9900,"superficie_util":45,"superficie_total":52,"dormitorios":1,"banos":1,"estacionamientos":1,"fecha_publicacion":"2025-09-01","fotos":["assets/fotos/neohaus1.jpg"],"descripcion":"Excelente ubicación, terminaciones de alto estándar." },
-  { "id":"bodega-kennedy","title":"Bodega en Kennedy — 8m²","tipo":"Bodega","operacion":"arriendo","comuna":"Las Condes","precio_uf":5,"superficie_util":8,"superficie_total":8,"dormitorios":0,"banos":0,"estacionamientos":0,"fecha_publicacion":"2025-09-07","fotos":["assets/fotos/bodega1.jpg"],"descripcion":"Bodega segura en edificio moderno." }
+  {
+    "id": "casa-camino-chin",
+    "title": "Casa Camino del Chin",
+    "tipo": "Casa",
+    "operacion": "arriendo",
+    "comuna": "Lo Barnechea",
+    "precio_uf": 45,
+    "superficie_util": 220,
+    "superficie_total": 250,
+    "dormitorios": 4,
+    "banos": 3
+  },
+  {
+    "id": "oficina-providencia-2250",
+    "title": "Oficina Nueva Providencia 2250",
+    "tipo": "Oficina",
+    "operacion": "arriendo",
+    "comuna": "Providencia",
+    "precio_uf": 30,
+    "superficie_util": 85,
+    "superficie_total": 90,
+    "dormitorios": 0,
+    "banos": 2
+  },
+  {
+    "id": "puerto-velero-penthouse",
+    "title": "Puerto Velero Penthouse",
+    "tipo": "Departamento",
+    "operacion": "arriendo",
+    "comuna": "Coquimbo",
+    "precio_uf": 80,
+    "superficie_util": 160,
+    "superficie_total": 180,
+    "dormitorios": 3,
+    "banos": 3
+  },
+  {
+    "id": "casa-sendero-infante",
+    "title": "Casa Sendero del Infante, Las Condes",
+    "tipo": "Casa",
+    "operacion": "venta",
+    "comuna": "Las Condes",
+    "precio_uf": 9800,
+    "superficie_util": 350,
+    "superficie_total": 380,
+    "dormitorios": 5,
+    "banos": 4
+  },
+  {
+    "id": "neohaus-vitacura-1d",
+    "title": "Neohaus Vitacura – 1D/1B",
+    "tipo": "Departamento",
+    "operacion": "proyecto",
+    "comuna": "Vitacura",
+    "precio_uf": 6056,
+    "superficie_util": 45,
+    "superficie_total": 52,
+    "dormitorios": 1,
+    "banos": 1
+  },
+  {
+    "id": "neohaus-la-dehesa-1d",
+    "title": "Neohaus La Dehesa – 1D/1B",
+    "tipo": "Departamento",
+    "operacion": "proyecto",
+    "comuna": "Lo Barnechea",
+    "precio_uf": 6200,
+    "superficie_util": 50,
+    "superficie_total": 60,
+    "dormitorios": 1,
+    "banos": 1
+  }
 ]
