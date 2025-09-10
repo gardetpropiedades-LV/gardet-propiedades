@@ -2,41 +2,63 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Contacto | Gardet Propiedades</title>
   <link rel="stylesheet" href="styles.css">
 </head>
-<a href="https://wa.me/569XXXXXXXX" class="btn-wsp" target="_blank">
-  <img src="assets/whatsapp.svg" alt="WhatsApp">
-</a>
 <body>
+
+  <!-- NAVBAR -->
   <header>
-    <img src="assets/logo.png" alt="Gardet Propiedades" class="logo">
-    <nav>
-      <a href="index.html">Inicio</a>
-      <a href="arriendos.html">Arriendos</a>
-      <a href="venta.html">Ventas</a>
-      <a href="proyectos.html">Proyectos</a>
-      <a href="contacto.html">Contacto</a>
+    <nav class="navbar">
+      <div class="navbar-logo">
+        <a href="index.html">
+          <img src="assets/logo.png" alt="Gardet Propiedades">
+        </a>
+      </div>
+      <ul class="navbar-links">
+        <li><a href="arriendos.html">Arriendos</a></li>
+        <li><a href="venta.html">Ventas</a></li>
+        <li><a href="proyectos.html">Proyectos</a></li>
+        <li><a href="contacto.html" class="active">Contacto</a></li>
+      </ul>
     </nav>
   </header>
 
-  <main>
+  <!-- HERO -->
+  <section class="hero">
     <h1>Contacto</h1>
-    <p>Déjanos tus datos y te contactaremos</p>
-    <form action="https://formspree.io/f/tuCodigoAqui" method="POST">
+    <p>Déjanos tus datos y un asesor de Gardet se comunicará contigo</p>
+  </section>
+
+  <!-- FORMULARIO -->
+  <main class="contact-form-section">
+    <form action="https://formspree.io/f/tuCodigoAqui" method="POST" class="contact-form">
       <label>Nombre</label>
       <input type="text" name="nombre" required>
+
       <label>Email</label>
       <input type="email" name="email" required>
+
       <label>Mensaje</label>
       <textarea name="mensaje" required></textarea>
+
       <button type="submit">Enviar</button>
     </form>
-    <a href="https://wa.me/569XXXXXX" class="whatsapp">Escríbenos en WhatsApp</a>
   </main>
 
+  <!-- FOOTER -->
   <footer>
     <p>Gardet Propiedades © 2025 — Todos los derechos reservados</p>
   </footer>
+
+  <!-- BOTÓN WHATSAPP -->
+  <a href="https://wa.me/569XXXXXXX" class="btn-wsp" target="_blank">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="38" height="38" fill="white">
+      <path fill="#25D366" d="M16 0C7.164 0 0 6.79 0 15.166c0 2.674.72 5.129 1.969 7.27L0 32l9.906-2.609A16.335 16.335 0 0 0 16 30.332c8.836 0 16-6.79 16-15.166C32 6.79 24.836 0 16 0zm0 28.986c-2.871 0-5.527-.844-7.75-2.309l-.555-.354-5.883 1.547 1.57-5.593-.363-.574a12.363 12.363 0 0 1-1.922-6.537c0-6.844 5.781-12.414 12.902-12.414 3.445 0 6.68 1.314 9.117 3.707 2.43 2.395 3.785 5.574 3.785 8.707 0 6.844-5.781 12.42-12.902 12.42z"/>
+      <path fill="#FFF" d="M24.07 19.88c-.367-.184-2.164-1.074-2.5-1.195-.336-.12-.582-.184-.828.184-.246.367-.953 1.195-1.168 1.441-.215.246-.43.276-.797.092-.367-.184-1.547-.567-2.945-1.807-1.09-.97-1.828-2.164-2.043-2.531-.215-.367-.023-.565.162-.748.168-.168.367-.43.551-.645.184-.215.246-.367.367-.613.123-.245.061-.46-.031-.645-.092-.184-.828-2.004-1.133-2.746-.297-.711-.598-.613-.828-.623H9.98c-.246 0-.645.092-.98.46-.336.368-1.285 1.254-1.285 3.06s1.312 3.555 1.496 3.801c.184.246 2.578 3.934 6.25 5.516.875.379 1.555.605 2.086.773.875.279 1.672.24 2.305.145.703-.104 2.164-.887 2.469-1.742.305-.86.305-1.598.215-1.742-.09-.15-.336-.245-.703-.429z"/>
+    </svg>
+  </a>
+
 </body>
 </html>
