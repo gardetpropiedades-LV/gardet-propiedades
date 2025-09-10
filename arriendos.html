@@ -1,66 +1,29 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Arriendos - Gardet Propiedades</title>
-  <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-  <!-- NAV -->
-  <header>
-    <nav class="navbar">
-      <div class="logo">Gardet</div>
-      <ul>
-        <li><a href="index.html">Inicio</a></li>
-        <li><a href="arriendos.html" class="active">Arriendos</a></li>
-        <li><a href="venta.html">Ventas</a></li>
-        <li><a href="proyectos.html">Proyectos</a></li>
-        <li><a href="contacto.html">Contacto</a></li>
-      </ul>
-    </nav>
-  </header>
+<script>
+  // Cargar JSON con propiedades
+  fetch("properties.json")
+    .then(res => res.json())
+    .then(data => {
+      const container = document.getElementById("properties-container");
+      const arriendos = data.filter(p => p.operacion === "arriendo");
 
-  <main>
-    <section class="hero">
-      <h1>Propiedades en Arriendo</h1>
-      <p>Encuentra tu nuevo hogar con Gardet</p>
-    </section>
+      if (arriendos.length === 0) {
+        container.innerHTML = "<p>No hay propiedades en arriendo disponibles.</p>";
+      }
 
-    <!-- CONTENEDOR DE PROPIEDADES -->
-    <section class="property-list" id="properties-container">
-      <!-- Aquí se cargarán las propiedades dinámicamente -->
-    </section>
-  </main>
-
-  <!-- FOOTER -->
-  <footer>
-    <p>Gardet Propiedades © 2025 — Todos los derechos reservados</p>
-  </footer>
-
-  <script>
-    // Cargar el JSON con propiedades
-    fetch("properties.json")
-      .then(res => res.json())
-      .then(data => {
-        const container = document.getElementById("properties-container");
-        const arriendos = data.filter(p => p.tipo === "arriendo");
-
-        arriendos.forEach(p => {
-          container.innerHTML += `
-            <div class="property-card">
-              <img src="${p.fotos[0]}" alt="${p.titulo}">
-              <div class="property-info">
-                <h3>${p.titulo}</h3>
-                <p>${p.ubicacion}</p>
-                <p><strong>${p.precio}</strong></p>
-                <p>${p.dormitorios} Dorm • ${p.banos} Baños • ${p.superficie} m²</p>
-                <a href="propiedad.html?id=${p.id}" class="btn-ver">Ver propiedad</a>
-              </div>
+      arriendos.forEach(p => {
+        container.innerHTML += `
+          <div class="property-card">
+            <img src="assets/placeholder.jpg" alt="${p.title}">
+            <div class="property-info">
+              <h3>${p.title}</h3>
+              <p>${p.comuna}</p>
+              <p><strong>${p.precio_uf} UF</strong></p>
+              <p>${p.dormitorios} Dorm • ${p.banos} Baños • ${p.superficie_total} m²</p>
+              <a href="propiedad.html?id=${p.id}" class="btn-ver">Ver propiedad</a>
             </div>
-          `;
-        });
+          </div>
+        `;
       });
-  </script>
-</body>
-</html>
+    })
+    .catch(err => console.error("Error cargando propiedades:", err));
+</script>
