@@ -12,3 +12,60 @@ h1,h2,h3 { font-family:'Poppins',sans-serif;}
 .cta{text-align:center;margin:50px auto;}
 footer{background:var(--color-dark);color:white;text-align:center;padding:20px;}
 .btn-wsp{position:fixed;bottom:20px;right:20px;background:#25D366;color:white;border-radius:50%;padding:15px;text-decoration:none;font-size:20px;}
+/* Lista de propiedades */
+.property-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 2rem;
+  padding: 2rem;
+}
+
+.property-card {
+  background: #fff;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease;
+}
+
+.property-card:hover {
+  transform: translateY(-6px);
+}
+
+.property-card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.property-info {
+  padding: 1rem;
+}
+
+.property-info h3 {
+  margin: 0 0 0.5rem;
+  color: #1C1C1C;
+  font-family: 'Poppins', sans-serif;
+}
+
+.property-info p {
+  margin: 0.3rem 0;
+  font-family: 'Open Sans', sans-serif;
+  color: #555;
+}
+
+.btn-ver {
+  display: inline-block;
+  margin-top: 0.8rem;
+  padding: 0.6rem 1rem;
+  background: #CBA36C;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 4px;
+  font-weight: bold;
+  transition: background 0.2s ease;
+}
+
+.btn-ver:hover {
+  background: #a9854e;
+}
