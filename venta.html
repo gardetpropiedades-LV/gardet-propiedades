@@ -2,30 +2,71 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Ventas | Gardet Propiedades</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ventas - Gardet Propiedades</title>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+  <!-- HEADER -->
   <header>
-    <img src="assets/logo.png" alt="Gardet Propiedades" class="logo">
-    <nav>
-      <a href="index.html">Inicio</a>
-      <a href="arriendos.html">Arriendos</a>
-      <a href="venta.html">Ventas</a>
-      <a href="proyectos.html">Proyectos</a>
-      <a href="contacto.html">Contacto</a>
+    <nav class="navbar">
+      <div class="logo">Gardet</div>
+      <ul>
+        <li><a href="index.html">Inicio</a></li>
+        <li><a href="arriendos.html">Arriendos</a></li>
+        <li><a href="venta.html" class="active">Ventas</a></li>
+        <li><a href="proyectos.html">Proyectos</a></li>
+        <li><a href="contacto.html">Contacto</a></li>
+      </ul>
     </nav>
   </header>
 
+  <!-- HERO -->
   <main>
-    <h1>Propiedades en Venta</h1>
-    <div id="lista-ventas"></div>
+    <section class="hero">
+      <h1>Propiedades en Venta</h1>
+      <p>Descubre casas y departamentos en venta con Gardet</p>
+    </section>
+
+    <!-- CONTENEDOR DE VENTAS -->
+    <section class="property-list" id="properties-container">
+      <!-- Aquí se cargarán las propiedades dinámicamente -->
+    </section>
   </main>
 
+  <!-- FOOTER -->
   <footer>
     <p>Gardet Propiedades © 2025 — Todos los derechos reservados</p>
   </footer>
 
-  <script src="app.js"></script>
+  <!-- SCRIPT PARA CARGAR PROPIEDADES -->
+  <script>
+    fetch("properties.json")
+      .then(res => res.json())
+      .then(data => {
+        const container = document.getElementById("properties-container");
+        const ventas = data.filter(p => p.operacion === "venta");
+
+        if (ventas.length === 0) {
+          container.innerHTML = "<p>No hay propiedades en venta disponibles por ahora.</p>";
+        }
+
+        ventas.forEach(p => {
+          container.innerHTML += `
+            <div class="property-card">
+              <img src="assets/placeholder.jpg" alt="${p.title}">
+              <div class="property-info">
+                <h3>${p.title}</h3>
+                <p>${p.comuna}</p>
+                <p><strong>${p.precio_uf} UF</strong></p>
+                <p>${p.dormitorios} Dorm • ${p.banos} Baños • ${p.superficie_total} m²</p>
+                <a href="propiedad.html?id=${p.id}" class="btn-ver">Ver propiedad</a>
+              </div>
+            </div>
+          `;
+        });
+      })
+      .catch(err => console.error("Error cargando propiedades:", err));
+  </script>
 </body>
 </html>
