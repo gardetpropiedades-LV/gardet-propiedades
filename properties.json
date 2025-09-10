@@ -18,11 +18,11 @@
     "tipo": "Oficina",
     "operacion": "arriendo",
     "comuna": "Providencia",
-    "precio_uf": 30,
-    "superficie_util": 85,
-    "superficie_total": 90,
-    "dormitorios": 0,
-    "banos": 2
+    "precio_uf": 65,
+    "superficie_util": 140,
+    "superficie_total": 140,
+    "Privados": 5,
+    "banos": 3
   },
   {
     "id": "puerto-velero-penthouse",
