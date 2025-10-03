@@ -1,0 +1,38 @@
+[
+  {
+    "slug": "ventas-vivienda-santiago-2024",
+    "titulo": "Ventas de viviendas nuevas en Santiago repuntan 27% en el primer trimestre de 2024",
+    "fecha": "2024-05-15",
+    "resumen": "La CChC informó 7.736 unidades comercializadas, el mejor registro desde 2021, impulsado por promociones y tasas más bajas.",
+    "imagen": "assets/news/noticia-ventas.svg",
+    "icono": "assets/icons/news-market.svg",
+    "categoria": "Mercado",
+    "contenidoHTML": "<p>La Cámara Chilena de la Construcción destacó que mayo cerró con una recuperación sostenida en ventas nuevas, apoyada por incentivos comerciales y renegociación de tasas hipotecarias.</p>",
+    "fuente": "https://www.latercera.com/pulso/noticia/ventas-de-viviendas-nuevas-en-santiago-anotan-su-mejor-trimestre-desde-2021-segun-la-cchc/2WXM4LGTY5CGPJPRAMN5NZLGQI/",
+    "publicado": true
+  },
+  {
+    "slug": "ipom-diciembre-2024",
+    "titulo": "Banco Central proyecta inflación de 3% para 2025 en el IPoM de diciembre",
+    "fecha": "2024-12-20",
+    "resumen": "El instituto emisor mantuvo la TPM en 6,5% y anticipó recortes graduales si la convergencia inflacionaria continúa.",
+    "imagen": "assets/news/noticia-ipom.svg",
+    "icono": "assets/icons/news-banco.svg",
+    "categoria": "Economía",
+    "contenidoHTML": "<p>El IPoM de diciembre refuerza escenarios de mayor dinamismo inmobiliario ante costos de financiamiento más bajos hacia 2025.</p>",
+    "fuente": "https://www.bcentral.cl/ipom",
+    "publicado": true
+  },
+  {
+    "slug": "plan-emergencia-habitacional-2024",
+    "titulo": "Plan de Emergencia Habitacional supera las 100 mil viviendas entregadas",
+    "fecha": "2024-10-04",
+    "resumen": "El MINVU informó que alcanzó el 50% de la meta 2026 con foco en regiones y soluciones industrializadas.",
+    "imagen": "assets/news/noticia-minvu.svg",
+    "icono": "assets/icons/news-minvu.svg",
+    "categoria": "Política pública",
+    "contenidoHTML": "<p>El Ministerio de Vivienda y Urbanismo señaló que los proyectos priorizados contemplan integración social y equipamientos en polos urbanos emergentes.</p>",
+    "fuente": "https://www.minvu.gob.cl/plan-de-emergencia-habitacional-supera-las-100-mil-viviendas-entregadas/",
+    "publicado": true
+  }
+]

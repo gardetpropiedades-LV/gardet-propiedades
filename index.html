@@ -1,88 +1,175 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Gardet Propiedades – Encuentra tu próximo hogar</title>
-  <meta name="description" content="Arriendos, ventas y proyectos inmobiliarios en Chile. Invierte o encuentra tu próximo hogar con Gardet Propiedades.">
-  <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Gardet Propiedades</title>
+  <link rel="stylesheet" href="styles.css"/>
+  <script src="assets/js/news-home.js" defer></script>
 </head>
 <body>
 
-  <!-- NAVBAR -->
- <header>
-  <nav class="navbar">
-    <div class="navbar-logo">
-      <a href="index.html">
-        <img src="assets/logo.png" alt="Gardet Propiedades">
-      </a>
+  <!-- NAV -->
+  <div class="navbar">
+    <div class="inner container">
+      <div class="brand">
+        <img src="assets/logo.png" alt="Gardet"/>
+        <strong>Gardet Propiedades</strong>
+      </div>
+      <nav>
+        <a href="arriendos.html">Arriendos</a>
+        <a href="venta.html">Ventas</a>
+        <a href="proyectos.html">Proyectos</a>
+        <a href="contacto.html" class="btn btn-primary">Contacto</a>
+      </nav>
     </div>
-    <ul class="navbar-links">
-      <li><a href="arriendos.html">Arriendos</a></li>
-      <li><a href="venta.html">Ventas</a></li>
-      <li><a href="proyectos.html">Proyectos</a></li>
-      <li><a href="contacto.html">Contacto</a></li>
-    </ul>
-  </nav>
-</header>
+  </div>
 
   <!-- HERO -->
   <section class="hero">
-    <h1>Encuentra tu próximo hogar o invierte con Gardet</h1>
-    <p>Arriendos • Ventas • Proyectos Inmobiliarios</p>
-  </section>
-
-  <!-- BUSCADOR -->
-  <section class="search-box">
-    <form>
-      <select name="operacion">
-        <option value="venta">Venta</option>
-        <option value="arriendo">Arriendo</option>
-      </select>
-
-      <select name="tipo">
-        <option value="departamento">Departamentos</option>
-        <option value="casa">Casas</option>
-        <option value="oficina">Oficinas</option>
-        <option value="bodega">Bodegas</option>
-      </select>
-
-      <div class="search-input">
-        <input type="text" placeholder="Ingresa comuna o ciudad">
-        <button type="submit" class="search-btn">🔍</button>
+    <div class="bg"></div><div class="overlay"></div>
+    <div class="content container">
+      <span class="eyebrow">Propiedades premium en el oriente de Santiago</span>
+      <h1>Encuentra tu próximo hogar con asesoría a medida</h1>
+      <p>Venta, arriendo y administración en Vitacura, Las Condes, Lo Barnechea y Providencia, con especialistas que acompañan cada etapa.</p>
+      <div class="microcopy">
+        <span><svg viewBox="0 0 20 20" class="mini-icon" aria-hidden="true"><path d="m3 10 4 4 10-10" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>+120 propiedades activas</span>
+        <span><svg viewBox="0 0 20 20" class="mini-icon" aria-hidden="true"><path d="M6 4h8M4 8h12M7 12h6m-4 4h2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Corretaje y administración 360°</span>
       </div>
-
-      <label class="toggle">
-        <input type="checkbox" name="proyectos">
-        <span>Proyectos</span>
-      </label>
-
-      <button type="submit" class="btn-search">Buscar</button>
-      <button type="button" class="btn-map">Buscar en Mapa</button>
-    </form>
-  </section>
-
-  <!-- CTA (Explora opciones) -->
-  <section>
-    <h2 style="text-align:center; margin-top:50px;">Explora nuestras opciones</h2>
-    <div class="options">
-      <a href="arriendos.html">Ver Arriendos</a>
-      <a href="venta.html">Ver Ventas</a>
-      <a href="proyectos.html">Ver Proyectos</a>
+      <form class="card search" action="arriendos.html" method="GET">
+        <select name="operacion" class="select">
+          <option value="">Operación</option>
+          <option>Venta</option><option>Arriendo</option>
+        </select>
+        <select name="tipo" class="select">
+          <option value="">Tipo</option>
+          <option>Casa</option><option>Departamento</option><option>Oficina</option><option>Terreno</option>
+        </select>
+        <input name="comuna" class="input" placeholder="Comuna o ciudad"/>
+        <input name="min" class="input" placeholder="UF mín"/>
+        <input name="max" class="input" placeholder="UF máx"/>
+        <button class="btn-primary btn" type="submit">Buscar</button>
+      </form>
     </div>
   </section>
 
-  <!-- FOOTER -->
-  <footer>
+  <!-- OPCIONES -->
+  <section class="section section-theme-light options-section">
+    <div class="container">
+      <div class="section-heading">
+        <span class="section-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 10.5 12 4l8 6.5V20a1 1 0 0 1-1 1h-5.5v-5h-3v5H5a1 1 0 0 1-1-1v-9.5Z" fill="currentColor"/></svg>
+        </span>
+        <h2 class="h2">Explora nuestras opciones</h2>
+        <p class="lead">Seleccionamos inmuebles listos para visitar, desde departamentos con amenities hasta casas listas para mudarse.</p>
+      </div>
+      <div class="cards">
+        <a href="arriendos.html" class="card">
+          <span class="card-icon" aria-hidden="true"><img src="assets/icons/icon-arriendo.svg" alt="" loading="lazy"/></span>
+          <span class="badge">Arriendos</span>
+          <h3 class="card-title">Ver arriendos</h3>
+          <p class="card-copy">Contratos flexibles y apoyo en entrega para empresas y familias.</p>
+        </a>
+        <a href="venta.html" class="card">
+          <span class="card-icon" aria-hidden="true"><img src="assets/icons/icon-venta.svg" alt="" loading="lazy"/></span>
+          <span class="badge">Ventas</span>
+          <h3 class="card-title">Ver ventas</h3>
+          <p class="card-copy">Propiedades exclusivas con estudios comparativos y pricing estratégico.</p>
+        </a>
+        <a href="proyectos.html" class="card">
+          <span class="card-icon" aria-hidden="true"><img src="assets/icons/icon-proyectos.svg" alt="" loading="lazy"/></span>
+          <span class="badge">Proyectos</span>
+          <h3 class="card-title">Ver proyectos</h3>
+          <p class="card-copy">Acceso anticipado a lanzamientos y beneficios para inversionistas.</p>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- NOTICIAS -->
+  <section class="section section-theme-mist news-section">
+    <div class="container">
+      <div class="section-heading">
+        <span class="section-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v14l-4-2-4 2-4-2-4 2V5Z" fill="currentColor"/></svg>
+        </span>
+        <h2 class="h2">Noticias</h2>
+        <p class="lead">Tendencias del sector, datos macro y anuncios oficiales que impactan al mercado inmobiliario.</p>
+      </div>
+      <div id="news-grid" class="cards"></div>
+      <div class="mt-4">
+        <a href="noticias.html" class="btn">Ver todas las noticias</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- REDES SOCIALES -->
+  <section class="section">
+    <div class="container">
+      <h2 class="h2">Síguenos</h2>
+      <p class="lead">Nuevos tours y contenido tipo reels en nuestras redes.</p>
+      <div class="social-grid">
+        <!-- YouTube -->
+        <div class="card">
+          <div class="ratio">
+            <!-- IFRAME del reproductor (placeholder) -->
+            <iframe id="yt-player" src="https://www.youtube-nocookie.com/embed/dQw4w9WgXcQ?rel=0"
+                    title="YouTube video" frameborder="0" allowfullscreen></iframe>
+          </div>
+          <p class="mt-2"><strong>YouTube</strong> · Recorridos y tips</p>
+          <!-- Botón Suscribirse oficial -->
+          <div class="yt-subscribe mt-2">
+            <div class="g-ytsubscribe" data-channel="Gardetpropiedades" data-layout="default" data-count="default"></div>
+          </div>
+          <a class="btn mt-2" href="https://www.youtube.com/@Gardetpropiedades" target="_blank" rel="noreferrer">
+            Ir al canal
+          </a>
+        </div>
+
+        <!-- Instagram (con embed del reel) -->
+        <div class="card">
+          <div class="ratio insta-embed">
+            <div class="insta-fallback">
+              <img src="assets/news/noticia-ventas.svg" alt="Instagram Gardet" style="width:100%;height:100%;object-fit:cover;border-radius:12px"/>
+            </div>
+            <!-- El blockquote con el reel se inyecta vía JS -->
+          </div>
+          <p class="mt-2">
+            <strong>Instagram</strong> · <a href="https://www.instagram.com/gardetpropiedades" target="_blank" rel="noreferrer">@gardetpropiedades</a>
+          </p>
+          <a class="btn" href="https://www.instagram.com/gardetpropiedades" target="_blank" rel="noreferrer">Seguir en Instagram</a>
+        </div>
+
+        <!-- TikTok -->
+        <div class="card">
+          <div class="ratio">
+            <a href="#" target="_blank" rel="noreferrer" class="btn">Ver en TikTok</a>
+          </div>
+          <p class="mt-2"><strong>TikTok</strong> · Clips rápidos</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BOTÓN WHATSAPP -->
+  <a class="whatsapp" href="https://wa.me/56987829204" target="_blank" rel="noreferrer" aria-label="WhatsApp">
+    <svg viewBox="0 0 32 32" class="wa-ico" aria-hidden="true"><path d="M16 .7A15.3 15.3 0 0 0 2.6 24.3L.7 31.3l7-1.8A15.3 15.3 0 1 0 16 .7Zm8.7 23.9a12.8 12.8 0 0 1-6.8 3.6c-2.4.4-4.8.1-7-.8l-.4-.2-4.2 1.1 1.1-4.1-.2-.4a12.8 12.8 0 1 1 17.5 4.8Zm-1.6-5.6c-.1-.3-.6-.5-1.2-.8s-2.1-1-2.4-1.1-.6-.2-.9.3-1 1.1-1.2 1.2-.4.2-.8.1a10.5 10.5 0 0 1-3.1-1.9 11.5 11.5 0 0 1-2.1-2.5c-.2-.3 0-.5.2-.7l.6-.7c.2-.2.2-.3.3-.6a.6.6 0 0 0 0-.6c0-.2-.8-2-1.1-2.7s-.6-.6-.8-.6h-.7a1.4 1.4 0 0 0-1 .5 4.2 4.2 0 0 0-1.3 3.1 7.4 7.4 0 0 0 1.6 3.9 16.9 16.9 0 0 0 6.5 5.6 22.2 22.2 0 0 0 2.2.8 5.3 5.3 0 0 0 2.5.2 4.1 4.1 0 0 0 2.7-1.9c.2-.4.2-.8.1-1Z" fill="currentColor"/></svg>
+  </a>
+
+  <!-- (deja el resto del HTML que ya exista debajo, si lo hubiera) -->
+  <footer class="footer">
     <p>Gardet Propiedades © 2025 — Todos los derechos reservados</p>
   </footer>
 
-  <!-- BOTÓN WHATSAPP -->
-  <a href="https://wa.me/56987829204" class="btn-wsp" target="_blank">
-    <img src="assets/whatsapp.svg" alt="WhatsApp">
-  </a>
-
   <!-- Script para funcionalidades -->
   <script src="app.js"></script>
+  <script src="assets/js/social.js" defer></script>
+  <script src="https://apis.google.com/js/platform.js" async defer></script>
+  <script>
+    // Para cambiar el video luego, solo cambia VIDEO_ID abajo:
+    const YT_VIDEO_ID = 'dQw4w9WgXcQ'; // placeholder
+    const ifr = document.getElementById('yt-player');
+    if (ifr) ifr.src = 'https://www.youtube-nocookie.com/embed/' + YT_VIDEO_ID + '?rel=0';
+  </script>
 </body>
 </html>
