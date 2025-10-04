@@ -1,0 +1,140 @@
+[
+  {
+    "slug": "depto-giratorio-providencia",
+    "operacion": "Arriendo",
+    "estado": "disponible",
+    "titulo": "Depto con vista · El Giratorio",
+    "tipo": "Departamento",
+    "comuna": "Providencia",
+    "direccion": "Av. Nueva Providencia / El Giratorio",
+    "precio_uf": 45,
+    "m2_util": 60,
+    "dormitorios": 2,
+    "banos": 2,
+    "descripcion": "Luminoso, a pasos del metro Los Leones, orientación oriente.",
+    "fotos": [
+      "assets/fotos/placeholder.jpg"
+    ],
+    "publicado": true
+  },
+  {
+    "slug": "casa-camino-del-chin-lb",
+    "operacion": "Arriendo",
+    "estado": "disponible",
+    "titulo": "Casa Camino del Chin · La Dehesa",
+    "tipo": "Casa",
+    "comuna": "Lo Barnechea",
+    "direccion": "Camino del Chin",
+    "precio_uf": 120,
+    "m2_util": 240,
+    "dormitorios": 4,
+    "banos": 4,
+    "descripcion": "Casa con quincho y jardín, conectividad a colegios.",
+    "fotos": [
+      "assets/fotos/placeholder.jpg"
+    ],
+    "publicado": true
+  },
+  {
+    "slug": "oficina-nueva-costanera-50m2",
+    "operacion": "Arriendo",
+    "estado": "disponible",
+    "titulo": "Oficina 50 m² · Nueva Costanera",
+    "tipo": "Oficina",
+    "comuna": "Vitacura",
+    "direccion": "Nueva Costanera",
+    "precio_uf": 70,
+    "m2_util": 50,
+    "dormitorios": 0,
+    "banos": 1,
+    "descripcion": "Planta libre con 1 privado y 1 baño, edificio clase A.",
+    "fotos": [
+      "assets/fotos/placeholder.jpg"
+    ],
+    "publicado": true
+  },
+  {
+    "slug": "estudio-tobalaba",
+    "operacion": "Arriendo",
+    "estado": "arrendado",
+    "titulo": "Estudio · Metro Tobalaba",
+    "tipo": "Departamento",
+    "comuna": "Las Condes",
+    "direccion": "Luis Thayer Ojeda",
+    "precio_uf": 18,
+    "m2_util": 32,
+    "dormitorios": 1,
+    "banos": 1,
+    "descripcion": "Edificio con amenities y laundry.",
+    "fotos": [
+      "assets/fotos/placeholder.jpg"
+    ],
+    "publicado": true
+  },
+  {
+    "slug": "casa-la-dehesa-4d",
+    "operacion": "Arriendo",
+    "estado": "disponible",
+    "titulo": "Casa 4D · La Dehesa",
+    "tipo": "Casa",
+    "comuna": "Lo Barnechea",
+    "direccion": "Av. La Dehesa",
+    "precio_uf": 110,
+    "m2_util": 210,
+    "dormitorios": 4,
+    "banos": 3,
+    "descripcion": "Remodelada 2023, cocina integrada y terrazas.",
+    "fotos": [
+      "assets/fotos/placeholder.jpg"
+    ],
+    "publicado": true
+  },
+  {
+    "slug": "penthouse-puerto-velero",
+    "operacion": "Arriendo",
+    "estado": "disponible",
+    "titulo": "Penthouse en Puerto Velero – 5D 5B con Jacuzzi y Vista Despejada",
+    "tipo": "Departamento",
+    "comuna": "Coquimbo",
+    "direccion": "Edificio 27B, Puerto Velero, Coquimbo",
+    "precio_uf": null,
+    "precio_clp_noche": 600000,
+    "moneda": "CLP",
+    "modalidad": "noche",
+    "m2_util": 231.4,
+    "dormitorios": 5,
+    "banos": 5,
+    "estacionamientos": 3,
+    "capacidad": 10,
+    "pisos": 2,
+    "descripcion": "Penthouse de dos pisos en el último piso de Puerto Velero con 5 dormitorios, 5 baños, jacuzzi privado, terrazas, parrilla a gas y capacidad para 10 personas. Ideal para disfrutar en familia a pasos de la playa.",
+    "fotos": [
+      "assets/fotos/pv-penthouse-1.jpg"
+    ],
+    "publicado": true
+  },
+  {
+    "slug": "oficina-giratorio-arrendada",
+    "operacion": "Arriendo",
+    "estado": "arrendado",
+    "titulo": "Oficina Arrendada – Edificio Giratorio en Providencia",
+    "tipo": "Oficina",
+    "comuna": "Providencia",
+    "direccion": "Av. Nueva Providencia, Edificio Giratorio",
+    "precio_uf": 40,
+    "precio_clp_noche": null,
+    "moneda": "UF",
+    "modalidad": null,
+    "m2_util": 128,
+    "dormitorios": null,
+    "banos": 3,
+    "estacionamientos": 2,
+    "descripcion": "Oficina arrendada ubicada en el emblemático Edificio Giratorio, en pleno centro de Providencia. Cuenta con 4 privados, sala de reuniones, recepción, kitchenette, 3 baños y 2 estacionamientos. A pasos del metro Los Leones.",
+    "fotos": [
+      "assets/fotos/giratorio-1.jpg",
+      "assets/fotos/giratorio-2.jpg",
+      "assets/fotos/giratorio-3.jpg"
+    ],
+    "publicado": true
+  }
+]
