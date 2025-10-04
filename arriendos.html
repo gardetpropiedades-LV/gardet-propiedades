@@ -1,79 +1,53 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Arriendos - Gardet Propiedades</title>
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-
-  <!-- NAVBAR -->
-<header>
-  <nav class="navbar">
-    <div class="navbar-logo">
-      <a href="index.html">
-        <img src="assets/logo.png" alt="Gardet Propiedades">
-      </a>
+  <div class="navbar">
+    <div class="inner container">
+      <div class="brand">
+        <a href="index.html" class="brand-link" aria-label="Inicio Gardet Propiedades">
+          <img src="assets/logo.png" alt="Gardet" />
+        </a>
+        <strong>Gardet Propiedades</strong>
+      </div>
+      <nav>
+        <a href="arriendos.html" class="active">Arriendos</a>
+        <a href="venta.html">Ventas</a>
+        <a href="proyectos.html">Proyectos</a>
+        <a href="contacto.html" class="btn btn-primary">Contacto</a>
+      </nav>
     </div>
-    <ul class="navbar-links">
-      <li><a href="arriendos.html">Arriendos</a></li>
-      <li><a href="venta.html">Ventas</a></li>
-      <li><a href="proyectos.html">Proyectos</a></li>
-      <li><a href="contacto.html">Contacto</a></li>
-    </ul>
-  </nav>
-</header>
+  </div>
 
-  <!-- HERO -->
-  <section class="hero">
-    <h1>Propiedades en Arriendo</h1>
-    <p>Encuentra tu próximo hogar en arriendo con Gardet</p>
-  </section>
-
-  <!-- LISTA DE PROPIEDADES -->
   <main>
-    <section class="property-list" id="properties-container">
-      <!-- Aquí se cargarán las propiedades desde JSON -->
+    <section class="section section-theme-canvas">
+      <div class="container">
+        <h1>Arriendos</h1>
+        <p class="lead">Explora propiedades en arriendo filtrando por tipo, comuna y rango de UF.</p>
+        <form id="filters" class="card search" novalidate>
+          <select name="tipo" class="select" aria-label="Filtrar por tipo de propiedad">
+            <option value="">Tipo</option>
+            <option>Casa</option><option>Departamento</option><option>Oficina</option><option>Terreno</option>
+          </select>
+          <input name="comuna" class="input" placeholder="Comuna" aria-label="Filtrar por comuna" />
+          <input name="min" class="input" placeholder="UF mín" inputmode="numeric" aria-label="UF mínima" />
+          <input name="max" class="input" placeholder="UF máx" inputmode="numeric" aria-label="UF máxima" />
+          <button class="btn btn-primary" type="submit">Filtrar</button>
+        </form>
+        <div id="grid" class="cards" aria-live="polite"></div>
+      </div>
     </section>
   </main>
 
-  <!-- FOOTER -->
-  <footer>
+  <footer class="footer">
     <p>Gardet Propiedades © 2025 — Todos los derechos reservados</p>
   </footer>
 
-  <!-- SCRIPT PARA CARGAR DATOS -->
-  <script>
-    // Cargar JSON con propiedades
-    fetch("properties.json")
-      .then(res => res.json())
-      .then(data => {
-        const container = document.getElementById("properties-container");
-        const arriendos = data.filter(p => p.operacion === "arriendo");
-
-        if (arriendos.length === 0) {
-          container.innerHTML = "<p>No hay propiedades en arriendo disponibles.</p>";
-        }
-
-        arriendos.forEach(p => {
-          container.innerHTML += `
-            <div class="property-card">
-              ${p.estado ? `<div class="estado-banda">${p.estado.toUpperCase()}</div>` : ""}
-              <img src="${p.imagen || 'assets/placeholder.jpg'}" alt="${p.title}">
-              <div class="property-info">
-                <h3>${p.title}</h3>
-                <p>${p.comuna}</p>
-                <p><strong>UF ${p.precio_uf}</strong></p>
-                <p>${p.dormitorios} Dorm • ${p.banos} Baños • ${p.superficie_total} m²</p>
-                <a href="propiedad.html?id=${p.id}" class="btn-ver">Ver propiedad</a>
-              </div>
-            </div>
-          `;
-        });
-      })
-      .catch(err => console.error("Error cargando propiedades:", err));
-  </script>
-
+  <script src="assets/js/catalog.js" defer></script>
 </body>
 </html>
