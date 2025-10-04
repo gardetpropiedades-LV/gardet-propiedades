@@ -113,7 +113,7 @@
         <div class="card">
           <div class="ratio">
             <!-- IFRAME del reproductor (placeholder) -->
-            <iframe id="yt-player" src="https://www.youtube.com/embed/dQw4w9WgXcQ"
+            <iframe id="yt-player" src="https://www.youtube-nocookie.com/embed/dQw4w9WgXcQ?rel=0"
                     title="YouTube video" frameborder="0" allowfullscreen></iframe>
           </div>
           <p class="mt-2"><strong>YouTube</strong> · Recorridos y tips</p>
@@ -169,7 +169,7 @@
     // Para cambiar el video luego, solo cambia VIDEO_ID abajo:
     const YT_VIDEO_ID = 'dQw4w9WgXcQ'; // placeholder
     const ifr = document.getElementById('yt-player');
-    if (ifr) ifr.src = 'https://www.youtube.com/embed/' + YT_VIDEO_ID;
+    if (ifr) ifr.src = 'https://www.youtube-nocookie.com/embed/' + YT_VIDEO_ID + '?rel=0';
   </script>
 </body>
 </html>
