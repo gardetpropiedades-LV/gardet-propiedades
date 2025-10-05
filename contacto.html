@@ -1,66 +1,130 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Contacto | Gardet Propiedades</title>
-  <link rel="stylesheet" href="styles.css">
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Contáctanos — Gardet</title>
+<link rel="stylesheet" href="styles.css"/>
 </head>
-<body>
-
-  <!-- NAVBAR -->
-  <header>
-    <nav class="navbar">
-      <div class="navbar-logo">
-        <a href="index.html">
-          <img src="assets/logo.png" alt="Gardet Propiedades">
-        </a>
-      </div>
-      <ul class="navbar-links">
-        <li><a href="arriendos.html">Arriendos</a></li>
-        <li><a href="venta.html">Ventas</a></li>
-        <li><a href="proyectos.html">Proyectos</a></li>
-        <li><a href="contacto.html" class="active">Contacto</a></li>
-      </ul>
+<body class="contact-page">
+<div class="navbar navbar--white">
+  <div class="container nav-inner">
+    <a class="brand" href="index.html"><img src="assets/logo.png" alt="Gardet" class="brand-logo"/></a>
+    <nav class="nav-links">
+      <a href="arriendos.html">Arriendos</a>
+      <a href="venta.html">Ventas</a>
+      <a href="proyectos.html">Proyectos</a>
+      <a class="btn btn-ghost active" href="contacto.html">Contacto</a>
     </nav>
-  </header>
+  </div>
+</div>
 
-  <!-- HERO -->
-  <section class="hero">
-    <h1>Contacto</h1>
-    <p>Déjanos tus datos y un asesor de Gardet se comunicará contigo</p>
-  </section>
+<section class="contact-hero">
+  <div class="container hero-inner">
+    <span class="hero-kicker">Contacto Gardet</span>
+    <h1 class="hero-title">Conversemos</h1>
+    <p class="hero-copy">Cuéntanos qué buscas y te contactamos con opciones filtradas para tu caso.</p>
+    <div class="hero-highlight">
+      <span class="dot"></span>
+      <strong>Respuesta promedio 1–3 horas hábiles.</strong>
+    </div>
+  </div>
+</section>
 
-  <!-- FORMULARIO -->
-  <main>
-    <section class="contact-container">
-      <form action="https://formspree.io/f/tuCodigoAqui" method="POST" class="contact-form">
-        <label for="nombre">Nombre</label>
-        <input type="text" id="nombre" name="nombre" required>
+<section class="section container contact-section">
+  <div class="contact-grid">
+    <form id="cform" class="card pad-lg contact-card">
+      <div class="form-heading">
+        <h2>Agenda tu consulta</h2>
+        <p>Los datos nos ayudan a prepararnos antes de escribirte.</p>
+      </div>
+      <div class="row wrap">
+        <input required name="nombre" class="input flex" placeholder="Nombre y Apellido"/>
+        <input required type="tel" name="fono" class="input flex" placeholder="+56 9 1234 5678"/>
+      </div>
+      <div class="row wrap">
+        <input required type="email" name="email" class="input flex" placeholder="correo@tuemail.cl"/>
+        <select required name="motivo" class="input flex">
+          <option value="">Motivo</option>
+          <option>Comprar</option><option>Vender</option><option>Arrendar</option>
+          <option>Administración</option><option>Inversión</option><option>Tasación</option>
+        </select>
+      </div>
+      <div class="row wrap">
+        <input name="comunas" class="input flex" placeholder="Comunas / zonas de interés"/>
+        <input name="presupuesto" class="input flex" placeholder="Presupuesto (UF o CLP)"/>
+      </div>
+      <input name="interes" id="interes" class="input" placeholder="Interés en (propiedad/proyecto)"/>
+      <textarea name="mensaje" class="input" rows="4" placeholder="Cuéntanos brevemente tu situación"></textarea>
 
-        <label for="email">Email</label>
-        <input type="email" id="email" name="email" required>
+      <label class="check mt-2"><input type="checkbox" required/>
+        Acepto ser contactado por Gardet (WhatsApp / email / teléfono)
+      </label>
 
-        <label for="mensaje">Mensaje</label>
-        <textarea id="mensaje" name="mensaje" rows="5" required></textarea>
+      <div class="row gap mt-2">
+        <button class="btn" id="to-wa" type="submit">Enviar por WhatsApp</button>
+        <a class="btn btn-ghost" id="to-mail" href="#">Enviar por Email</a>
+      </div>
+    </form>
 
-        <button type="submit">Enviar</button>
-      </form>
-    </section>
-  </main>
+    <aside class="card pad-lg contact-aside">
+      <h3 class="card-title">Atención personalizada</h3>
+      <p>Somos un equipo boutique: cada caso se revisa por un asesor senior del área que necesitas.</p>
+      <ul class="list">
+        <li>Horario: Lun–Vie 09:00–18:00 (Chile)</li>
+        <li>Respuesta promedio: 1–3 horas hábiles</li>
+        <li>WhatsApp directo: <a href="https://wa.me/56987829204" target="_blank" rel="noreferrer">+56 9 8782 9204</a></li>
+        <li>Email: <a href="mailto:gardetpropiedades@gmail.com">gardetpropiedades@gmail.com</a></li>
+      </ul>
+      <div class="contact-tags">
+        <span class="chip">Ventas premium</span>
+        <span class="chip">Arriendos ejecutivos</span>
+        <span class="chip">Inversión</span>
+      </div>
+    </aside>
+  </div>
+</section>
 
-  <!-- FOOTER -->
-  <footer>
-    <p>Gardet Propiedades © 2025 — Todos los derechos reservados</p>
-  </footer>
+<footer class="footer"><p>Gardet Propiedades © 2025 — Todos los derechos reservados</p></footer>
+<script>
+(function(){
+  const P = new URLSearchParams(location.search);
+  const ref = P.get('ref'); if(ref) document.getElementById('interes').value = 'Interés en: ' + ref;
 
-  <!-- BOTÓN WHATSAPP -->
-  <a href="https://wa.me/569XXXXXXX" class="btn-wsp" target="_blank">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="38" height="38" fill="white">
-      <path fill="#25D366" d="M16 0C7.164 0 0 6.79 0 15.166c0 2.674.72 5.129 1.969 7.27L0 32l9.906-2.609A16.335 16.335 0 0 0 16 30.332c8.836 0 16-6.79 16-15.166C32 6.79 24.836 0 16 0zm0 28.986c-2.871 0-5.527-.844-7.75-2.309l-.555-.354-5.883 1.547 1.57-5.593-.363-.574a12.363 12.363 0 0 1-1.922-6.537c0-6.844 5.781-12.414 12.902-12.414 3.445 0 6.68 1.314 9.117 3.707 2.43 2.395 3.785 5.574 3.785 8.707 0 6.844-5.781 12.42-12.902 12.42z"/>
-      <path fill="#FFF" d="M24.07 19.88c-.367-.184-2.164-1.074-2.5-1.195-.336-.12-.582-.184-.828.184-.246.367-.953 1.195-1.168 1.441-.215.246-.43.276-.797.092-.367-.184-1.547-.567-2.945-1.807-1.09-.97-1.828-2.164-2.043-2.531-.215-.367-.023-.565.162-.748.168-.168.367-.43.551-.645.184-.215.246-.367.367-.613.123-.245.061-.46-.031-.645-.092-.184-.828-2.004-1.133-2.746-.297-.711-.598-.613-.828-.623H9.98c-.246 0-.645.092-.98.46-.336.368-1.285 1.254-1.285 3.06s1.312 3.555 1.496 3.801c.184.246 2.578 3.934 6.25 5.516.875.379 1.555.605 2.086.773.875.279 1.672.24 2.305.145.703-.104 2.164-.887 2.469-1.742.305-.86.305-1.598.215-1.742-.09-.15-.336-.245-.703-.429z"/>
-    </svg>
-  </a>
+  const form = document.getElementById('cform');
+  const btnMail = document.getElementById('to-mail');
+  const phone = '56987829204'; // EDITAR si cambia
 
+  function msg(fd){
+    const get = k => (fd.get(k)||'').trim();
+    const lines = [
+      '*Contacto Web Gardet*',
+      `• Nombre: ${get('nombre')}`,
+      `• Fono: ${get('fono')}`,
+      `• Email: ${get('email')}`,
+      `• Motivo: ${get('motivo')}`,
+      get('comunas') && `• Comunas: ${get('comunas')}`,
+      get('presupuesto') && `• Presupuesto: ${get('presupuesto')}`,
+      get('interes') && `• Interés: ${get('interes')}`,
+      get('mensaje') && `• Mensaje: ${get('mensaje')}`
+    ].filter(Boolean);
+    return lines.join('%0A'); // encode newlines
+  }
+
+  form.addEventListener('submit', e=>{
+    e.preventDefault();
+    const fd = new FormData(form);
+    const url = `https://wa.me/${phone}?text=${msg(fd)}`;
+    window.open(url, '_blank');
+  });
+
+  btnMail.addEventListener('click', e=>{
+    e.preventDefault();
+    const fd = new FormData(form);
+    const body = decodeURIComponent(msg(fd)).replace(/\n/g,'%0A');
+    window.location.href = `mailto:gardetpropiedades@gmail.com?subject=Contacto Web Gardet&body=${body}`;
+  });
+})();
+</script>
 </body>
 </html>
