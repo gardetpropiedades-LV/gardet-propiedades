@@ -24,18 +24,9 @@
     const fromFormatted = formatNumber(from);
     const toFormatted = formatNumber(to);
 
-    if (fromFormatted && toFormatted) {
-      return `UF ${fromFormatted} – UF ${toFormatted}`;
-    }
-
-    if (fromFormatted) {
-      return `Desde UF ${fromFormatted}`;
-    }
-
-    if (toFormatted) {
-      return `Hasta UF ${toFormatted}`;
-    }
-
+    if (fromFormatted && toFormatted) return `UF ${fromFormatted} – UF ${toFormatted}`;
+    if (fromFormatted) return `Desde UF ${fromFormatted}`;
+    if (toFormatted) return `Hasta UF ${toFormatted}`;
     return 'Valores por confirmar';
   };
 
@@ -44,10 +35,7 @@
     if (/^\d{4}-\d{2}$/.test(value)) {
       const [year, month] = value.split('-').map(Number);
       const date = new Date(year, month - 1, 1);
-      return new Intl.DateTimeFormat('es-CL', {
-        month: 'long',
-        year: 'numeric',
-      }).format(date);
+      return new Intl.DateTimeFormat('es-CL', { month: 'long', year: 'numeric' }).format(date);
     }
     return value;
   };
@@ -55,12 +43,8 @@
   const getStatusBadgeClass = (status) => {
     if (!status) return '';
     const normalized = status.toLowerCase();
-    if (normalized.includes('entrega inmediata') || normalized.includes('inmediata')) {
-      return 'badge-status';
-    }
-    if (normalized.includes('verde') || normalized.includes('pronta') || normalized.includes('lanzamiento')) {
-      return 'badge-soft';
-    }
+    if (normalized.includes('entrega inmediata') || normalized.includes('inmediata')) return 'badge-status';
+    if (normalized.includes('verde') || normalized.includes('pronta') || normalized.includes('lanzamiento')) return 'badge-soft';
     return 'badge-muted';
   };
 
@@ -88,7 +72,7 @@
     const statusClass = getStatusBadgeClass(estado);
     const entregaFormatted = formatEntrega(entrega);
     const badges = Array.isArray(etiquetas)
-      ? etiquetas.map(createBadge).filter(Boolean).join(' ')
+      ? etiquetas.map(createBadge).filter(Boolean).join('') // sin espacios; el GAP lo maneja CSS
       : '';
     const rangeLabel = formatUfRange(desde_uf, hasta_uf);
     const contactTarget = id || title;
@@ -108,7 +92,15 @@
             ${ubicacion ? `<p class="project-card__location">${ubicacion}</p>` : ''}
           </div>
           <p class="project-card__price">Rango UF: ${rangeLabel}</p>
-          ${tipologias ? `<p class="project-card__meta">Tipologías ${tipologias}${entregaFormatted ? ` • Entrega ${entregaFormatted}` : ''}</p>` : entregaFormatted ? `<p class="project-card__meta">Entrega ${entregaFormatted}</p>` : ''}
+          ${
+            tipologias
+              ? `<p class="project-card__meta">Tipologías ${tipologias}${
+                  entregaFormatted ? ` • Entrega ${entregaFormatted}` : ''
+                }</p>`
+              : entregaFormatted
+                ? `<p class="project-card__meta">Entrega ${entregaFormatted}</p>`
+                : ''
+          }
           ${badges ? `<div class="project-card__badges">${badges}</div>` : ''}
           <div class="project-card__actions">
             <a class="btn btn-primary" href="${contactUrl}">Solicitar información</a>
@@ -128,20 +120,15 @@
       `;
       return;
     }
-
     grid.innerHTML = projects.map(createProjectCard).join('');
   };
 
   fetch(PROJECTS_SOURCE)
     .then((response) => {
-      if (!response.ok) {
-        throw new Error(`HTTP ${response.status}`);
-      }
+      if (!response.ok) throw new Error(`HTTP ${response.status}`);
       return response.json();
     })
-    .then((projects) => {
-      renderProjects(projects);
-    })
+    .then(renderProjects)
     .catch((error) => {
       console.error('Error cargando proyectos:', error);
       grid.innerHTML = `
@@ -151,7 +138,5 @@
         </div>
       `;
     })
-    .finally(() => {
-      setBusy(false);
-    });
+    .finally(() => setBusy(false));
 })();
