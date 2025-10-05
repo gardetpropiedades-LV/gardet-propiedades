@@ -1,4 +1,54 @@
 [
-  { "id":"neohaus-vitacura","nombre":"Neohaus Vitacura","ubicacion":"Vitacura, Santiago","estado":"En venta","tipologias":"1D–3D","desde_uf":9900,"permite_renta_corta":true,"pie_en_cuotas":"hasta 60 sin interés","fotos":["assets/fotos/neohaus_p1.jpg"],"descripcion":"Proyecto de alto estándar con excelente conectividad." },
-  { "id":"eco-cerrillos","nombre":"Eco Cerrillos","ubicacion":"Cerrillos, Santiago","estado":"Entrega inmediata","tipologias":"1D–2D","desde_uf":2300,"permite_renta_corta":false,"pie_en_cuotas":"sí","fotos":["assets/fotos/ecoc1.jpg"],"descripcion":"Buena relación precio/ubicación, ideal para inversión." }
+  {
+    "id": "neohaus-vitacura",
+    "nombre": "Neohaus Vitacura",
+    "ubicacion": "Vitacura, Santiago",
+    "estado": "Entrega inmediata",
+    "tipologias": "1D–2D",
+    "desde_uf": 6056,
+    "hasta_uf": 12600,
+    "entrega": "Inmediata",
+    "developer": "Neohaus",
+    "direccion": "Av. Las Condes 12.170, Vitacura",
+    "etiquetas": ["inversión", "arriendo", "entrega-inmediata"],
+    "fotos": [],
+    "planos": ["assets/fotos/neohaus-vitacura-plano-a1.jpg", "assets/fotos/neohaus-vitacura-plano-b2.jpg"],
+    "estacionamientos_bodegas": "Estacionamiento y bodega según unidad",
+    "notas": "Apto para renta corta (Airbnb). Pie hasta en 5 cuotas."
+  },
+  {
+    "id": "neohaus-la-dehesa",
+    "nombre": "Neohaus La Dehesa",
+    "ubicacion": "Lo Barnechea, Santiago",
+    "estado": "En verde",
+    "tipologias": "1D–3D",
+    "desde_uf": null,
+    "hasta_uf": null,
+    "entrega": "2026-03",
+    "developer": "Neohaus",
+    "direccion": "Av. El Tranque con Av. La Dehesa (por confirmar)",
+    "etiquetas": ["familiar", "naturaleza", "inversión"],
+    "fotos": [],
+    "planos": ["assets/fotos/neohaus-la-dehesa-plano-a1.jpg"],
+    "estacionamientos_bodegas": "Estacionamiento y bodega en unidades seleccionadas",
+    "notas": "Apto para arriendo temporal. Pie hasta en 5 cuotas."
+  },
+  {
+    "id": "ciudad-av-vitacura",
+    "nombre": "Ciudad AV",
+    "ubicacion": "Vitacura, Santiago",
+    "estado": "Entrega inmediata",
+    "tipologias": "1D–2D",
+    "desde_uf": 9372,
+    "hasta_uf": 26529,
+    "entrega": "Inmediata",
+    "developer": "Inmobiliaria Deisa",
+    "direccion": "Av. Américo Vespucio Norte 1450, Vitacura",
+    "geo": { "lat": -33.390117, "lng": -70.583945 },
+    "etiquetas": ["inversión", "airbnb", "entrega-inmediata", "vitacura", "renta-corta"],
+    "fotos": [],
+    "planos": ["assets/fotos/ciudad-av-vitacura-plano-1.png", "assets/fotos/ciudad-av-vitacura-plano-2.png"],
+    "estacionamientos_bodegas": "Estacionamiento y bodega disponibles en varias unidades",
+    "notas": "Renta corta permitida (Airbnb OK). Unidades con jardín o azotea exclusiva."
+  }
 ]
