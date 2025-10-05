@@ -49,59 +49,63 @@
       </div>
     </section>
 
-    <!-- Chips de resumen + Orden -->
     <section class="section">
       <div class="container">
-        <div class="search-topbar">
-          <div class="chip readonly"><strong>Ubicación:</strong> <span id="chip-q">Cualquiera</span></div>
-          <div class="chip readonly"><strong>Operación:</strong> <span id="chip-op">Venta</span></div>
-          <div class="chip readonly"><strong>Precio:</strong> <span id="chip-price">Todos los…</span></div>
-          <div class="chip readonly"><strong>Tipo:</strong> <span id="chip-type">Cualquiera</span></div>
-          <div class="chip readonly" id="chip-nuevos" hidden>· Nuevos</div>
+        <form class="filters" id="filters-form" data-filters>
+          <select name="operacion" data-filter>
+            <option value="">Operación</option>
+            <option value="Venta">Venta</option>
+            <option value="Arriendo">Arriendo</option>
+          </select>
 
-          <div class="spacer"></div>
+          <select name="tipo" data-filter>
+            <option value="">Tipo</option>
+            <option>Departamento</option>
+            <option>Casa</option>
+            <option>Oficina</option>
+            <option>Terreno</option>
+            <option>Local</option>
+            <option>Estudio</option>
+          </select>
 
-          <label class="inline">
-            <span>Ordenar por</span>
-            <select id="orderBy">
-              <option value="precio-asc">Precio: menor a mayor</option>
-              <option value="precio-desc">Precio: mayor a menor</option>
-              <option value="m2-desc">Superficie: mayor a menor</option>
-              <option value="recientes">Más recientes</option>
+          <input type="text" name="ubicacion" placeholder="Comuna, barrio o calle" data-filter />
+
+          <div class="price-row">
+            <input type="number" min="0" step="1" name="min" placeholder="Mínimo" data-filter />
+            <input type="number" min="0" step="1" name="max" placeholder="Máximo" data-filter />
+            <select name="moneda" data-filter>
+              <option value="UF">UF</option>
+              <option value="CLP">CLP</option>
             </select>
-          </label>
-        </div>
-      </div>
-    </section>
+          </div>
 
-    <!-- Resultados -->
-    <section class="section">
-      <div class="container">
-        <div class="result-head">
-          <div id="result-count">0 resultados</div>
-          <button id="clear-filters" class="btn btn-ghost">Limpiar filtros</button>
-        </div>
+          <select name="dorms" data-filter>
+            <option value="">Dormitorios</option>
+            <option value="1">1+</option>
+            <option value="2">2+</option>
+            <option value="3">3+</option>
+            <option value="4">4+</option>
+          </select>
 
-        <div id="cards-grid" class="cards-grid">
-          <!-- Skeletons iniciales -->
-          <div class="card skeleton"></div>
-          <div class="card skeleton"></div>
-          <div class="card skeleton"></div>
-          <div class="card skeleton"></div>
-        </div>
+          <select name="banos" data-filter>
+            <option value="">Baños</option>
+            <option value="1">1+</option>
+            <option value="2">2+</option>
+            <option value="3">3+</option>
+          </select>
 
-        <div id="empty-state" class="empty" hidden>
-          <img src="assets/news/noticia-ventas.svg" alt="" loading="lazy"/>
-          <h3>Sin resultados</h3>
-          <p>Ajusta los filtros o limpia la búsqueda para ver más propiedades.</p>
-          <button id="empty-clear" class="btn">Limpiar filtros</button>
-        </div>
+          <select name="orden" data-filter>
+            <option value="precio-asc">Precio: menor a mayor</option>
+            <option value="precio-desc">Precio: mayor a menor</option>
+            <option value="m2-desc">m²: mayor a menor</option>
+            <option value="m2-asc">m²: menor a mayor</option>
+          </select>
 
-        <div class="pagination" id="pagination" hidden>
-          <button class="btn" id="prevPage" disabled>Anterior</button>
-          <span id="pageInfo">1 / 1</span>
-          <button class="btn" id="nextPage" disabled>Siguiente</button>
-        </div>
+          <button type="submit" class="btn btn-primary">Filtrar</button>
+          <button type="button" class="btn" data-clear>Limpiar filtros</button>
+        </form>
+
+        <section class="cards-grid" data-results aria-busy="false"></section>
       </div>
     </section>
   </main>
@@ -121,6 +125,6 @@
   </footer>
 
   <script src="assets/js/header.js" defer></script>
-  <script src="assets/js/catalog-venta.js" defer></script>
+  <script src="assets/js/filters.js" defer></script>
 </body>
 </html>

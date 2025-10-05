@@ -304,21 +304,44 @@ body.no-scroll{overflow:hidden}
 }
 .inline-icon{width:18px;height:18px;display:inline-block;margin-right:6px;vertical-align:middle}
 
+/* ===== Filtros catálogo ===== */
+.filters{
+  display:flex;
+  flex-wrap:wrap;
+  gap:12px;
+  align-items:flex-end;
+  background:#fff;
+  border:1px solid #e5e7eb;
+  border-radius:12px;
+  padding:16px;
+  margin-bottom:24px;
+}
+.filters select,
+.filters input{
+  min-width:140px;
+  border:1px solid #d1d5db;
+  border-radius:10px;
+  padding:10px 12px;
+  font-size:14px;
+  color:#0b1220;
+  background:#fff;
+  flex:1;
+}
+.filters input[type="number"]::-webkit-outer-spin-button,
+.filters input[type="number"]::-webkit-inner-spin-button{ -webkit-appearance:none; margin:0; }
+.filters .price-row{
+  display:flex;
+  gap:12px;
+  flex:2;
+}
+.filters .price-row input,
+.filters .price-row select{ flex:1; min-width:0; }
+.filters button{
+  min-height:44px;
+  border-radius:10px;
+}
+
 /* ===== Ventas: topbar filtros, grilla y cards ===== */
-.search-topbar{
-  display:flex; align-items:center; gap:10px; flex-wrap:wrap;
-  background:#fff; border:1px solid #e5e7eb; border-radius:12px; padding:12px 14px;
-}
-.chip.readonly{
-  background:#f9fafb; border:1px solid #e5e7eb; border-radius:999px;
-  padding:6px 10px; font-size:14px; color:#0b1220;
-}
-.search-topbar .inline{ display:flex; align-items:center; gap:8px; }
-.search-topbar .spacer{ flex:1; }
-
-.result-head{ display:flex; align-items:center; justify-content:space-between; margin:12px 0 18px; }
-.result-head #result-count{ font-weight:600; color:#0b1220; }
-
 .cards-grid{
   display:grid; gap:20px;
   grid-template-columns: repeat(12, 1fr);
@@ -364,8 +387,12 @@ body.no-scroll{overflow:hidden}
 .card-actions .btn-ghost{ border:1px solid #e5e7eb; }
 
 @media (max-width: 980px){
-  .search-topbar{ gap:8px; }
-  .chip.readonly{ font-size:13px; }
+  .filters{ gap:10px; }
+}
+@media (max-width: 640px){
+  .filters{ flex-direction:column; align-items:stretch; }
+  .filters .price-row{ flex-direction:column; }
+  .filters button{ width:100%; }
 }
 
 /* Estado vacío más compacto en desktop ancho */
