@@ -18,7 +18,8 @@ html,body{margin:0;padding:0;height:100%;font-family:-apple-system,BlinkMacSyste
 a{color:inherit}
 .container{max-width:1180px;margin:0 auto;padding:0 16px}
 
-.navbar{position:sticky;top:0;z-index:30;background:rgba(255,255,255,.97);border-bottom:1px solid rgba(17,17,17,.08);backdrop-filter:saturate(1.15) blur(8px);transition:box-shadow .25s ease,border-color .25s ease,background-color .25s ease}
+.navbar{position:sticky;top:0;z-index:80;background:rgba(255,255,255,.97);border-bottom:1px solid rgba(17,17,17,.08);backdrop-filter:saturate(1.15) blur(8px);transition:box-shadow .25s ease,border-color .25s ease,background-color .25s ease}
+.navbar.is-drawer-open{backdrop-filter:none;background:#ffffff}
 .navbar.is-scrolled{box-shadow:0 16px 30px rgba(17,17,17,.08);border-bottom-color:rgba(17,17,17,.12);background:rgba(255,255,255,.94)}
 .navbar .inner{display:flex;align-items:center;justify-content:space-between;padding:14px 0;gap:20px}
 .navbar .brand{display:inline-flex;align-items:center;flex-shrink:0}
@@ -26,7 +27,7 @@ a{color:inherit}
 .navbar [data-nav-desktop]{display:flex;align-items:center;gap:24px;flex-wrap:wrap;justify-content:flex-end}
 .navbar [data-nav-desktop] a{color:var(--brand);text-decoration:none;font-weight:500;padding:6px 0;transition:color .2s ease,transform .2s ease;white-space:nowrap}
 .navbar [data-nav-desktop] a:hover{color:var(--accent-strong)}
-.nav-toggle{display:none;position:relative;width:46px;height:46px;border:1px solid rgba(17,17,17,.12);border-radius:14px;background:#fff;padding:10px;align-items:center;justify-content:center;gap:6px;cursor:pointer;transition:background-color .2s ease,box-shadow .2s ease,border-color .2s ease;flex-direction:column}
+.nav-toggle{display:none;position:relative;z-index:120;width:46px;height:46px;border:1px solid rgba(17,17,17,.12);border-radius:14px;background:#fff;padding:10px;align-items:center;justify-content:center;gap:6px;cursor:pointer;transition:background-color .2s ease,box-shadow .2s ease,border-color .2s ease;flex-direction:column}
 .nav-toggle:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .nav-toggle__bar{display:block;width:100%;height:2px;background:var(--brand);border-radius:999px;transition:transform .2s ease,opacity .2s ease;transform-origin:center}
 .nav-toggle[aria-expanded="true"]{border-color:rgba(212,175,55,.45);box-shadow:0 16px 28px rgba(17,17,17,.16)}
