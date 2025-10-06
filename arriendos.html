@@ -28,18 +28,63 @@
     <section class="section section-theme-canvas">
       <div class="container">
         <h1>Arriendos</h1>
-        <p class="lead">Explora propiedades en arriendo filtrando por tipo, comuna y rango de UF.</p>
-        <form id="filters" class="card search" novalidate>
-          <select name="tipo" class="select" aria-label="Filtrar por tipo de propiedad">
-            <option value="">Tipo</option>
-            <option>Casa</option><option>Departamento</option><option>Oficina</option><option>Terreno</option>
+        <p class="lead">Explora propiedades en arriendo filtrando por operación, tipo, ubicación y rango de precio.</p>
+
+        <form class="filters" id="filters-form" data-filters>
+          <select name="operacion" data-filter>
+            <option value="">Operación</option>
+            <option value="Venta">Venta</option>
+            <option value="Arriendo">Arriendo</option>
           </select>
-          <input name="comuna" class="input" placeholder="Comuna" aria-label="Filtrar por comuna" />
-          <input name="min" class="input" placeholder="UF mín" inputmode="numeric" aria-label="UF mínima" />
-          <input name="max" class="input" placeholder="UF máx" inputmode="numeric" aria-label="UF máxima" />
-          <button class="btn btn-primary" type="submit">Filtrar</button>
+
+          <select name="tipo" data-filter>
+            <option value="">Tipo</option>
+            <option>Departamento</option>
+            <option>Casa</option>
+            <option>Oficina</option>
+            <option>Terreno</option>
+            <option>Local</option>
+            <option>Estudio</option>
+          </select>
+
+          <input type="text" name="ubicacion" placeholder="Comuna, barrio o calle" data-filter />
+
+          <div class="price-row">
+            <input type="number" min="0" step="1" name="min" placeholder="Mínimo" data-filter />
+            <input type="number" min="0" step="1" name="max" placeholder="Máximo" data-filter />
+            <select name="moneda" data-filter>
+              <option value="UF">UF</option>
+              <option value="CLP">CLP</option>
+            </select>
+          </div>
+
+          <select name="dorms" data-filter>
+            <option value="">Dormitorios</option>
+            <option value="1">1+</option>
+            <option value="2">2+</option>
+            <option value="3">3+</option>
+            <option value="4">4+</option>
+          </select>
+
+          <select name="banos" data-filter>
+            <option value="">Baños</option>
+            <option value="1">1+</option>
+            <option value="2">2+</option>
+            <option value="3">3+</option>
+          </select>
+
+          <select name="orden" data-filter>
+            <option value="precio-asc">Precio: menor a mayor</option>
+            <option value="precio-desc">Precio: mayor a menor</option>
+            <option value="m2-desc">m²: mayor a menor</option>
+            <option value="m2-asc">m²: menor a mayor</option>
+          </select>
+
+          <button type="submit" class="btn btn-primary">Filtrar</button>
+          <button type="button" class="btn" data-clear>Limpiar filtros</button>
         </form>
-        <div id="grid" class="cards" aria-live="polite"></div>
+
+        <section class="cards-grid" data-results aria-busy="false"></section>
       </div>
     </section>
   </main>
@@ -47,7 +92,7 @@
   <footer class="footer">
     <p>Gardet Propiedades © 2025 — Todos los derechos reservados</p>
   </footer>
-
-  <script src="assets/js/catalog.js" defer></script>
+  <script src="assets/js/mobile-fixes.js" defer></script>
+  <script src="assets/js/filters.js" defer></script>
 </body>
 </html>

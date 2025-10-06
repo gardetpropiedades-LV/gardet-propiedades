@@ -193,3 +193,23 @@
 
   updateScrolled();
 })();
+
+// ===== HOTFIX: anula cualquier intento de abrir el panel lateral del buscador
+(() => {
+  const kill = (sel) =>
+    document.querySelectorAll(sel).forEach((el) => {
+      el.addEventListener(
+        'click',
+        () => {
+          document.body.classList.remove('drawer-open', 'is-locked', 'nav-locked', 'no-scroll');
+          const rail = document.querySelector('.hero-search-rail,[data-search-rail],[data-search-panel]');
+          if (rail) {
+            rail.style.display = 'none';
+          }
+        },
+        true,
+      );
+    });
+
+  kill('#hs_operacion, #hs_tipo, #hs_ubicacion, #hs_min, #hs_max, #hs_moneda, #hs_submit, .hero .select, .hero .input, .hero .btn');
+})();
