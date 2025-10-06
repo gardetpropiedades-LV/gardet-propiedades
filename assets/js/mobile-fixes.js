@@ -1,7 +1,7 @@
 // Móvil: quita locks del body, cierra overlays residuales y evita que el menú lateral bloquee la pantalla
 (() => {
   const unlock = () => {
-    document.body.classList.remove('drawer-open', 'is-locked', 'nav-locked');
+    document.body.classList.remove('drawer-open', 'is-locked', 'nav-locked', 'no-scroll');
     document.documentElement.style.overflow = '';
     document.body.style.overflow = '';
     const rails = document.querySelectorAll('.hero-search-rail,[data-search-rail],[data-search-panel],.drawer-backdrop,.drawer-rail');
