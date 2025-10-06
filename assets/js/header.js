@@ -151,16 +151,11 @@
       return;
     }
 
+    closeDrawer(false);
+
     if (shouldKeepDefaultNavigation(event, link)) {
-      closeDrawer(false);
       return;
     }
-
-    event.preventDefault();
-    closeDrawer(false);
-    window.setTimeout(() => {
-      window.location.assign(link.href);
-    }, 120);
   });
 
   overlay?.addEventListener('click', () => {
