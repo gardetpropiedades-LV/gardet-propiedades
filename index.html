@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
   <title>Gardet Propiedades</title>
   <link rel="stylesheet" href="styles.css"/>
   <script src="assets/js/news-home.js" defer></script>
@@ -49,120 +49,34 @@
         <span><svg viewBox="0 0 20 20" class="mini-icon" aria-hidden="true"><path d="m3 10 4 4 10-10" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>+120 propiedades activas</span>
         <span><svg viewBox="0 0 20 20" class="mini-icon" aria-hidden="true"><path d="M6 4h8M4 8h12M7 12h6m-4 4h2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Corretaje y administración 360°</span>
       </div>
-      <div class="hero-search" data-hero-search>
-        <div class="hero-search__segments">
-          <button id="seg-loc" class="hero-segment" type="button" aria-expanded="false" aria-controls="panel-loc" data-panel-trigger="loc">
-            <span class="hero-segment__label">Ubicación</span>
-            <span id="seg-loc-sub" class="hero-segment__summary">Cualquiera</span>
-          </button>
-          <button id="seg-op" class="hero-segment" type="button" aria-expanded="false" aria-controls="panel-op" data-panel-trigger="op">
-            <span class="hero-segment__label">Operación y precio</span>
-            <span id="seg-op-sub" class="hero-segment__summary">Venta | Todos los precios</span>
-          </button>
-          <button id="seg-type" class="hero-segment" type="button" aria-expanded="false" aria-controls="panel-type" data-panel-trigger="type">
-            <span class="hero-segment__label">Tipo de propiedad</span>
-            <span id="seg-type-sub" class="hero-segment__summary">Cualquiera</span>
-          </button>
-          <button id="do-search" class="hero-search__submit btn btn-primary" type="button">Buscar</button>
-        </div>
-      </div>
-    </div>
-    <div class="hero-panels">
-      <section id="panel-loc" class="hero-panel" role="dialog" aria-modal="true" aria-labelledby="seg-loc" aria-hidden="true" data-panel="loc">
-        <div class="hero-panel__inner">
-          <header class="hero-panel__mobile-bar">
-            <h2>Ubicación</h2>
-            <button type="button" class="hero-panel__close" data-panel-dismiss="loc">
-              <span class="sr-only">Cerrar panel de ubicación</span>
-              <span aria-hidden="true">×</span>
-            </button>
-          </header>
-          <div class="hero-panel__body">
-            <label for="q" class="hero-panel__label">Escribe una ubicación</label>
-            <input id="q" type="text" placeholder="Busca un barrio, comuna o ciudad" autocomplete="off"/>
-          </div>
-          <footer class="hero-panel__footer">
-            <button class="btn btn-primary btn-apply" type="button" data-close="loc">Aplicar</button>
-          </footer>
-        </div>
-      </section>
+      <form id="hero-search-form" class="card search" action="" method="GET" novalidate>
+        <select name="operacion" id="hs_operacion" class="select">
+          <option value="">Operación</option>
+          <option value="venta">Venta</option>
+          <option value="arriendo">Arriendo</option>
+        </select>
 
-      <section id="panel-op" class="hero-panel" role="dialog" aria-modal="true" aria-labelledby="seg-op" aria-hidden="true" data-panel="op">
-        <div class="hero-panel__inner">
-          <header class="hero-panel__mobile-bar">
-            <h2>Operación y precio</h2>
-            <button type="button" class="hero-panel__close" data-panel-dismiss="op">
-              <span class="sr-only">Cerrar panel de operación y precio</span>
-              <span aria-hidden="true">×</span>
-            </button>
-          </header>
-          <div class="hero-panel__body">
-            <div class="hero-panel__tabs" role="tablist" aria-label="Tipo de operación">
-              <button class="tab-op is-active" type="button" role="tab" data-op="venta" aria-selected="true">Venta</button>
-              <button class="tab-op" type="button" role="tab" data-op="arriendo" aria-selected="false" tabindex="-1">Arriendo</button>
-            </div>
-            <div class="hero-panel__price">
-              <p class="hero-panel__label">Rango de precio (Opcional)</p>
-              <div class="hero-panel__price-grid">
-                <label class="field">
-                  <span>Precio mín.</span>
-                  <input id="min" type="text" inputmode="numeric" placeholder="0" autocomplete="off"/>
-                </label>
-                <label class="field">
-                  <span>Precio máx.</span>
-                  <input id="max" type="text" inputmode="numeric" placeholder="0" autocomplete="off"/>
-                </label>
-                <label class="field field--select">
-                  <span>Moneda</span>
-                  <select id="moneda">
-                    <option value="uf">UF</option>
-                    <option value="clp">CLP</option>
-                  </select>
-                </label>
-              </div>
-              <p id="hint-price" class="hero-panel__hint" role="alert" hidden>El mínimo no puede ser mayor que el máximo.</p>
-            </div>
-          </div>
-          <footer class="hero-panel__footer">
-            <button class="btn btn-primary btn-apply" type="button" data-close="op">Aplicar</button>
-          </footer>
-        </div>
-      </section>
+        <select name="tipo" id="hs_tipo" class="select">
+          <option value="">Tipo</option>
+          <option>Casa</option>
+          <option>Departamento</option>
+          <option>Oficina</option>
+          <option>Terreno</option>
+          <option>Local</option>
+        </select>
 
-      <section id="panel-type" class="hero-panel" role="dialog" aria-modal="true" aria-labelledby="seg-type" aria-hidden="true" data-panel="type">
-        <div class="hero-panel__inner">
-          <header class="hero-panel__mobile-bar">
-            <h2>Tipo de propiedad</h2>
-            <button type="button" class="hero-panel__close" data-panel-dismiss="type">
-              <span class="sr-only">Cerrar panel de tipo de propiedad</span>
-              <span aria-hidden="true">×</span>
-            </button>
-          </header>
-          <div class="hero-panel__body">
-            <fieldset class="hero-panel__fieldset">
-              <legend class="hero-panel__label">Elige un tipo</legend>
-              <div class="hero-panel__options">
-                <label><input type="radio" name="tipo" value="all" checked/>Cualquiera</label>
-                <label><input type="radio" name="tipo" value="casa"/>Casa</label>
-                <label><input type="radio" name="tipo" value="depto"/>Departamento</label>
-                <label><input type="radio" name="tipo" value="oficina"/>Oficina</label>
-                <label><input type="radio" name="tipo" value="local"/>Local</label>
-                <label><input type="radio" name="tipo" value="terreno"/>Terreno</label>
-                <label><input type="radio" name="tipo" value="campo"/>Campo</label>
-                <label><input type="radio" name="tipo" value="bodega"/>Bodega</label>
-                <label><input type="radio" name="tipo" value="estacionamiento"/>Estacionamiento</label>
-              </div>
-            </fieldset>
-            <label class="hero-panel__switch">
-              <input type="checkbox" id="nuevos"/>
-              <span>Nuevos desarrollos</span>
-            </label>
-          </div>
-          <footer class="hero-panel__footer">
-            <button class="btn btn-primary btn-apply" type="button" data-close="type">Aplicar</button>
-          </footer>
-        </div>
-      </section>
+        <input name="ubicacion" id="hs_ubicacion" class="input" placeholder="Comuna, barrio o calle" autocomplete="street-address" />
+
+        <input name="precio_min" id="hs_min" class="input" inputmode="numeric" pattern="[0-9]*" placeholder="Mín" />
+        <input name="precio_max" id="hs_max" class="input" inputmode="numeric" pattern="[0-9]*" placeholder="Máx" />
+
+        <select name="moneda" id="hs_moneda" class="select">
+          <option value="UF">UF</option>
+          <option value="CLP">CLP</option>
+        </select>
+
+        <button class="btn btn-primary" id="hs_submit" type="submit">Buscar</button>
+      </form>
     </div>
   </section>
 
@@ -278,6 +192,8 @@
   </footer>
 
   <!-- Script para funcionalidades -->
+  <script src="assets/js/hero-search.js" defer></script>
+  <script src="assets/js/mobile-fixes.js" defer></script>
   <script src="assets/js/hero.js" defer></script>
   <script src="assets/js/header.js" defer></script>
   <script src="app.js"></script>
