@@ -7,22 +7,35 @@
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <div class="navbar">
+  <header class="navbar" data-header>
     <div class="inner container">
-      <div class="brand">
-        <a href="index.html" class="brand-link" aria-label="Inicio Gardet Propiedades">
-          <img src="assets/logo.png" alt="Gardet" />
-        </a>
-        <strong>Gardet Propiedades</strong>
-      </div>
-      <nav>
-        <a href="arriendos.html" class="active">Arriendos</a>
+      <a class="brand" href="index.html">
+        <img src="assets/logo.png" alt="Gardet Propiedades" />
+      </a>
+      <nav class="nav-links" data-nav-desktop>
+        <a href="arriendos.html" class="is-active">Arriendos</a>
         <a href="venta.html">Ventas</a>
         <a href="proyectos.html">Proyectos</a>
         <a href="contacto.html" class="btn btn-primary">Contacto</a>
       </nav>
+      <button class="nav-toggle" type="button" aria-controls="mobile-drawer" aria-expanded="false" data-nav-toggle>
+        <span class="sr-only">Abrir menú principal</span>
+        <span class="nav-toggle__bar nav-toggle__bar--top"></span>
+        <span class="nav-toggle__bar nav-toggle__bar--middle"></span>
+        <span class="nav-toggle__bar nav-toggle__bar--bottom"></span>
+      </button>
     </div>
-  </div>
+    <aside id="mobile-drawer" class="nav-drawer" data-nav-drawer aria-hidden="true">
+      <nav class="nav-drawer__menu">
+        <a href="arriendos.html" class="is-active">Arriendos</a>
+        <a href="venta.html">Ventas</a>
+        <a href="proyectos.html">Proyectos</a>
+        <a href="contacto.html" class="btn btn-primary">Contacto</a>
+      </nav>
+    </aside>
+  </header>
+
+  <div class="drawer-overlay" data-drawer-overlay aria-hidden="true"></div>
 
   <main>
     <section class="section section-theme-canvas">
@@ -92,6 +105,7 @@
   <footer class="footer">
     <p>Gardet Propiedades © 2025 — Todos los derechos reservados</p>
   </footer>
+  <script src="assets/js/header.js" defer></script>
   <script src="assets/js/mobile-fixes.js" defer></script>
   <script src="assets/js/filters.js" defer></script>
 </body>
