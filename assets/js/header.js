@@ -136,10 +136,21 @@
   });
 
   drawer.addEventListener('click', (event) => {
-    const target = event.target;
-    if (target instanceof Element && target.tagName === 'A') {
+    const target = event.target instanceof Element ? event.target.closest('a') : null;
+    if (!target) return;
+
+    const href = target.getAttribute('href') || '';
+    if (href.startsWith('#')) {
+      event.preventDefault();
       closeDrawer(false);
+      const anchor = document.querySelector(href);
+      anchor?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      return;
     }
+
+    window.setTimeout(() => {
+      closeDrawer(false);
+    }, 120);
   });
 
   overlay?.addEventListener('click', () => {
