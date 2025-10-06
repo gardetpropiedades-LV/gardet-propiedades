@@ -6,11 +6,15 @@
     "titulo": "Depto con vista · El Giratorio",
     "tipo": "Departamento",
     "comuna": "Providencia",
+    "barrio": null,
+    "calle": "Av. Nueva Providencia",
     "direccion": "Av. Nueva Providencia / El Giratorio",
     "precio_uf": 45,
+    "precio_clp": null,
     "m2_util": 60,
     "dormitorios": 2,
     "banos": 2,
+    "estacionamientos": 0,
     "descripcion": "Luminoso, a pasos del metro Los Leones, orientación oriente.",
     "fotos": [
       "assets/fotos/placeholder.jpg"
@@ -24,11 +28,15 @@
     "titulo": "Casa Camino del Chin · La Dehesa",
     "tipo": "Casa",
     "comuna": "Lo Barnechea",
+    "barrio": null,
+    "calle": "Camino del Chin",
     "direccion": "Camino del Chin",
     "precio_uf": 120,
+    "precio_clp": null,
     "m2_util": 240,
     "dormitorios": 4,
     "banos": 4,
+    "estacionamientos": 2,
     "descripcion": "Casa con quincho y jardín, conectividad a colegios.",
     "fotos": [
       "assets/fotos/placeholder.jpg"
@@ -42,11 +50,15 @@
     "titulo": "Oficina 50 m² · Nueva Costanera",
     "tipo": "Oficina",
     "comuna": "Vitacura",
+    "barrio": null,
+    "calle": "Nueva Costanera",
     "direccion": "Nueva Costanera",
     "precio_uf": 70,
+    "precio_clp": null,
     "m2_util": 50,
     "dormitorios": 0,
     "banos": 1,
+    "estacionamientos": 1,
     "descripcion": "Planta libre con 1 privado y 1 baño, edificio clase A.",
     "fotos": [
       "assets/fotos/placeholder.jpg"
@@ -60,11 +72,15 @@
     "titulo": "Estudio · Metro Tobalaba",
     "tipo": "Departamento",
     "comuna": "Las Condes",
+    "barrio": null,
+    "calle": "Luis Thayer Ojeda",
     "direccion": "Luis Thayer Ojeda",
     "precio_uf": 18,
+    "precio_clp": null,
     "m2_util": 32,
     "dormitorios": 1,
     "banos": 1,
+    "estacionamientos": 0,
     "descripcion": "Edificio con amenities y laundry.",
     "fotos": [
       "assets/fotos/placeholder.jpg"
@@ -78,11 +94,15 @@
     "titulo": "Casa 4D · La Dehesa",
     "tipo": "Casa",
     "comuna": "Lo Barnechea",
+    "barrio": null,
+    "calle": "Av. La Dehesa",
     "direccion": "Av. La Dehesa",
     "precio_uf": 110,
+    "precio_clp": null,
     "m2_util": 210,
     "dormitorios": 4,
     "banos": 3,
+    "estacionamientos": 2,
     "descripcion": "Remodelada 2023, cocina integrada y terrazas.",
     "fotos": [
       "assets/fotos/placeholder.jpg"
@@ -96,8 +116,11 @@
     "titulo": "Penthouse en Puerto Velero – 5D 5B con Jacuzzi y Vista Despejada",
     "tipo": "Departamento",
     "comuna": "Coquimbo",
+    "barrio": "Puerto Velero",
+    "calle": null,
     "direccion": "Edificio 27B, Puerto Velero, Coquimbo",
     "precio_uf": null,
+    "precio_clp": null,
     "precio_clp_noche": 600000,
     "moneda": "CLP",
     "modalidad": "noche",
@@ -120,13 +143,16 @@
     "titulo": "Oficina Arrendada – Edificio Giratorio en Providencia",
     "tipo": "Oficina",
     "comuna": "Providencia",
+    "barrio": null,
+    "calle": "Av. Nueva Providencia",
     "direccion": "Av. Nueva Providencia, Edificio Giratorio",
     "precio_uf": 40,
+    "precio_clp": null,
     "precio_clp_noche": null,
     "moneda": "UF",
     "modalidad": null,
     "m2_util": 128,
-    "dormitorios": null,
+    "dormitorios": 0,
     "banos": 3,
     "estacionamientos": 2,
     "descripcion": "Oficina arrendada ubicada en el emblemático Edificio Giratorio, en pleno centro de Providencia. Cuenta con 4 privados, sala de reuniones, recepción, kitchenette, 3 baños y 2 estacionamientos. A pasos del metro Los Leones.",
@@ -143,11 +169,14 @@
     "estado": "disponible",
     "tipo": "Casa",
     "comuna": "Lo Barnechea",
+    "barrio": "La Dehesa",
+    "calle": "Sendero del Infante",
     "direccion": "Sendero del Infante, La Dehesa",
     "precio_uf": 23000,
+    "precio_clp": null,
     "m2_util": 280,
     "m2_terreno": 620,
-    "dorms": 4,
+    "dormitorios": 4,
     "banos": 4,
     "estacionamientos": 2,
     "nuevo": false,
@@ -158,7 +187,8 @@
       "sendero-infante-2.svg",
       "sendero-infante-3.svg"
     ],
-    "created_at": "2025-10-01T12:00:00Z"
+    "created_at": "2025-10-01T12:00:00Z",
+    "publicado": true
   },
   {
     "slug": "depto-vitacura-3d-2b",
@@ -166,10 +196,13 @@
     "estado": "disponible",
     "tipo": "Departamento",
     "comuna": "Vitacura",
+    "barrio": null,
+    "calle": "Luis Pasteur",
     "direccion": "Luis Pasteur",
     "precio_uf": 11500,
+    "precio_clp": null,
     "m2_util": 105,
-    "dorms": 3,
+    "dormitorios": 3,
     "banos": 2,
     "estacionamientos": 2,
     "nuevo": false,
@@ -178,7 +211,8 @@
     "fotos": [
       "depto-vitacura-1.svg"
     ],
-    "created_at": "2025-09-30T10:00:00Z"
+    "created_at": "2025-09-30T10:00:00Z",
+    "publicado": true
   },
   {
     "slug": "depto-parque-arauco-2d-2b",
@@ -186,10 +220,13 @@
     "estado": "disponible",
     "tipo": "Departamento",
     "comuna": "Las Condes",
+    "barrio": null,
+    "calle": "Pdte. Kennedy",
     "direccion": "Pdte. Kennedy, frente a Parque Arauco",
     "precio_uf": 8500,
+    "precio_clp": null,
     "m2_util": 78,
-    "dorms": 2,
+    "dormitorios": 2,
     "banos": 2,
     "estacionamientos": 1,
     "nuevo": false,
@@ -198,7 +235,8 @@
     "fotos": [
       "depto-parque-arauco-1.svg"
     ],
-    "created_at": "2025-09-28T09:00:00Z"
+    "created_at": "2025-09-28T09:00:00Z",
+    "publicado": true
   },
   {
     "slug": "oficina-el-golf-72m2",
@@ -206,8 +244,11 @@
     "estado": "disponible",
     "tipo": "Oficina",
     "comuna": "Las Condes",
+    "barrio": "El Golf",
+    "calle": "El Golf",
     "direccion": "El Golf",
     "precio_uf": 7500,
+    "precio_clp": null,
     "m2_util": 72,
     "banos": 2,
     "estacionamientos": 1,
@@ -217,7 +258,8 @@
     "fotos": [
       "oficina-golf-1.svg"
     ],
-    "created_at": "2025-09-27T12:00:00Z"
+    "created_at": "2025-09-27T12:00:00Z",
+    "publicado": true
   },
   {
     "slug": "casa-la-reina-remodelar",
@@ -225,11 +267,14 @@
     "estado": "disponible",
     "tipo": "Casa",
     "comuna": "La Reina",
+    "barrio": null,
+    "calle": "Av. Príncipe de Gales",
     "direccion": "Av. Príncipe de Gales",
     "precio_uf": 9800,
+    "precio_clp": null,
     "m2_util": 160,
     "m2_terreno": 420,
-    "dorms": 4,
+    "dormitorios": 4,
     "banos": 3,
     "estacionamientos": 2,
     "nuevo": false,
@@ -238,7 +283,8 @@
     "fotos": [
       "casa-lareina-1.svg"
     ],
-    "created_at": "2025-09-25T12:00:00Z"
+    "created_at": "2025-09-25T12:00:00Z",
+    "publicado": true
   },
   {
     "slug": "terreno-los-trapenses-1000",
@@ -246,16 +292,24 @@
     "estado": "disponible",
     "tipo": "Terreno",
     "comuna": "Lo Barnechea",
+    "barrio": "Los Trapenses",
+    "calle": null,
     "direccion": "Los Trapenses",
     "precio_uf": 17000,
+    "precio_clp": null,
+    "m2_util": 0,
     "m2_terreno": 1000,
+    "dormitorios": 0,
+    "banos": 0,
+    "estacionamientos": 0,
     "nuevo": false,
     "titulo": "Terreno 1.000 m² – Los Trapenses",
     "descripcion": "Lote regular con leve pendiente y vista. Barrio consolidado.",
     "fotos": [
       "terreno-trapenses-1.svg"
     ],
-    "created_at": "2025-09-24T12:00:00Z"
+    "created_at": "2025-09-24T12:00:00Z",
+    "publicado": true
   },
   {
     "slug": "loft-providencia-1d-1b",
@@ -263,10 +317,13 @@
     "estado": "disponible",
     "tipo": "Departamento",
     "comuna": "Providencia",
+    "barrio": null,
+    "calle": "Ricardo Lyon",
     "direccion": "Ricardo Lyon",
+    "precio_uf": null,
     "precio_clp": 165000000,
     "m2_util": 48,
-    "dorms": 1,
+    "dormitorios": 1,
     "banos": 1,
     "estacionamientos": 1,
     "nuevo": false,
@@ -275,7 +332,8 @@
     "fotos": [
       "loft-provi-1.svg"
     ],
-    "created_at": "2025-09-23T12:00:00Z"
+    "created_at": "2025-09-23T12:00:00Z",
+    "publicado": true
   },
   {
     "slug": "bodega-vitacura-28m2",
@@ -283,16 +341,23 @@
     "estado": "disponible",
     "tipo": "Bodega",
     "comuna": "Vitacura",
+    "barrio": null,
+    "calle": "Av. Vitacura",
     "direccion": "Av. Vitacura",
     "precio_uf": 750,
+    "precio_clp": null,
     "m2_util": 28,
+    "dormitorios": 0,
+    "banos": 0,
+    "estacionamientos": 0,
     "nuevo": false,
     "titulo": "Bodega 28 m² – Vitacura",
     "descripcion": "Bodega en primer subsuelo con acceso controlado y buena altura.",
     "fotos": [
       "bodega-vitacura-1.svg"
     ],
-    "created_at": "2025-09-22T12:00:00Z"
+    "created_at": "2025-09-22T12:00:00Z",
+    "publicado": true
   },
   {
     "slug": "estacionamiento-el-golf",
@@ -300,14 +365,22 @@
     "estado": "disponible",
     "tipo": "Estacionamiento",
     "comuna": "Las Condes",
+    "barrio": "El Golf",
+    "calle": "Callao",
     "direccion": "Callao / Apoquindo",
     "precio_uf": 520,
+    "precio_clp": null,
+    "m2_util": 0,
+    "dormitorios": 0,
+    "banos": 0,
+    "estacionamientos": 1,
     "nuevo": false,
     "titulo": "Estacionamiento en El Golf",
     "descripcion": "Piso -2, acceso cómodo y pasillos anchos. Seguridad 24/7.",
     "fotos": [
       "parking-golf-1.svg"
     ],
-    "created_at": "2025-09-21T12:00:00Z"
+    "created_at": "2025-09-21T12:00:00Z",
+    "publicado": true
   }
 ]
