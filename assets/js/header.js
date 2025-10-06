@@ -151,16 +151,19 @@
       return;
     }
 
-    if (shouldKeepDefaultNavigation(event, link)) {
-      closeDrawer(false);
-      return;
+    const allowBrowserNavigation = shouldKeepDefaultNavigation(event, link);
+    if (!allowBrowserNavigation) {
+      event.preventDefault();
     }
 
-    event.preventDefault();
     closeDrawer(false);
-    window.setTimeout(() => {
-      window.location.assign(link.href);
-    }, 120);
+
+    if (!allowBrowserNavigation) {
+      const targetHref = link.href;
+      window.requestAnimationFrame(() => {
+        window.location.assign(targetHref);
+      });
+    }
   });
 
   overlay?.addEventListener('click', () => {
