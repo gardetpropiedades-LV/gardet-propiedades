@@ -440,3 +440,80 @@ body.no-scroll{overflow:hidden}
 @media(max-width:1100px){.contact-grid{grid-template-columns:1fr;}}
 @media(max-width:720px){.hero-title{font-size:38px;}.contact-section{margin-top:-48px;padding-bottom:80px;}.contact-card,.contact-aside{padding:24px;}.contact-card .row{flex-direction:column;}}
 @media(max-width:520px){.contact-hero{padding:96px 0 72px;}.hero-highlight{width:100%;justify-content:center;text-align:center;}.contact-card .btn{width:100%;}.contact-card .row.gap{flex-direction:column;}}
+/* ===== HOTFIX drawer buscador: ocultar rail/backdrop y desbloquear scroll ===== */
+.hero-search-backdrop,
+.hero-search-rail,
+[data-search-rail],
+[data-search-panel],
+.drawer-backdrop,
+.drawer-rail {
+  display: none !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+  width: 0 !important;
+  transform: translateX(100%) !important; /* fuera de pantalla por si hay transiciones */
+}
+
+/* Si algún script bloquea el body, lo liberamos */
+body.is-locked,
+body.nav-locked,
+body.drawer-open {
+  overflow: auto !important;
+  height: auto !important;
+}
+
+/* ===== Mobile tweaks para el buscador del hero ===== */
+
+/* Evita zoom molesto en iOS cuando el input tiene < 16px */
+.hero .input,
+.hero .select,
+.hero .btn {
+  font-size: 16px; /* asegura teclado cómodo en iOS */
+  min-height: 44px; /* target táctil mínimo recomendado por Apple/Google */
+}
+
+/* Layout responsive del formulario del hero */
+@media (max-width: 768px) {
+  .hero .card.search {
+    display: grid;
+    grid-template-columns: 1fr;   /* una columna en móvil */
+    gap: 12px;
+    width: 100%;
+  }
+  .hero .card.search .select,
+  .hero .card.search .input,
+  .hero .card.search .btn {
+    width: 100%;
+  }
+  .hero .card.search .btn {
+    margin-top: 4px;
+  }
+}
+
+/* Corrige superposiciones: nada debe tapar el hero en móvil */
+@media (max-width: 768px) {
+  .hero-search-backdrop,
+  .hero-search-rail,
+  [data-search-rail],
+  [data-search-panel],
+  .drawer-backdrop,
+  .drawer-rail {
+    display: none !important;
+  }
+
+  /* Navbar en móvil por encima del hero pero sin bloquear scroll */
+  .navbar {
+    position: sticky;
+    top: 0;
+    z-index: 30;
+  }
+
+  /* Si algún script bloquea el body (blur, lock), lo desactivamos */
+  body.is-locked,
+  body.nav-locked,
+  body.drawer-open {
+    overflow: auto !important;
+    height: auto !important;
+    filter: none !important;
+  }
+}

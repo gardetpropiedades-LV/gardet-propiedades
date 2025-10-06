@@ -10,6 +10,35 @@
   const formatCLP = (n) => (n == null ? '—' : new Intl.NumberFormat('es-CL', { style: 'currency', currency: 'CLP', maximumFractionDigits: 0 }).format(n));
 
   const parseQs = () => Object.fromEntries(new URLSearchParams(location.search));
+  const mapQueryParams = (qsObj = {}) => {
+    const obj = { ...qsObj };
+
+    if (obj.precio_min != null && obj.precio_min !== '' && obj.min == null) {
+      obj.min = obj.precio_min;
+    }
+    if (obj.precio_max != null && obj.precio_max !== '' && obj.max == null) {
+      obj.max = obj.precio_max;
+    }
+
+    if (obj.operacion) {
+      const op = String(obj.operacion).toLowerCase();
+      if (op === 'venta') obj.operacion = 'Venta';
+      else if (op === 'arriendo') obj.operacion = 'Arriendo';
+    }
+
+    if (obj.moneda) {
+      obj.moneda = String(obj.moneda).toUpperCase();
+    }
+
+    if (!obj.ubicacion) {
+      const ubicacionParts = [obj.comuna, obj.barrio, obj.calle].filter((part) => part != null && String(part).trim() !== '');
+      if (ubicacionParts.length) {
+        obj.ubicacion = ubicacionParts.join(' ');
+      }
+    }
+
+    return obj;
+  };
   const stringifyQs = (obj) => new URLSearchParams(obj).toString();
 
   const getPrecio = (p, moneda) => {
@@ -52,15 +81,17 @@
   const filterData = (params) => {
     const moneda = params.moneda || 'UF';
     const needle = normalize(params.ubicacion || '');
-    const min = params.min ? Number(params.min) : null;
-    const max = params.max ? Number(params.max) : null;
+    const minRaw = params.min ?? params.precio_min ?? null;
+    const maxRaw = params.max ?? params.precio_max ?? null;
+    const min = minRaw !== null && minRaw !== '' ? Number(minRaw) : null;
+    const max = maxRaw !== null && maxRaw !== '' ? Number(maxRaw) : null;
     const dorms = params.dorms ? Number(params.dorms) : null;
     const banos = params.banos ? Number(params.banos) : null;
 
     const filtered = all.filter((p) => {
       if (p?.publicado !== true) return false;
 
-      if (params.operacion && p.operacion !== params.operacion) return false;
+      if (params.operacion && normalize(p.operacion) !== normalize(params.operacion)) return false;
       if (params.tipo && p.tipo !== params.tipo) return false;
 
       if (needle) {
@@ -220,7 +251,7 @@
       return;
     }
 
-    const qsObj = parseQs();
+    const qsObj = mapQueryParams(parseQs());
     if (!qsObj.operacion && pageOperacion) {
       qsObj.operacion = pageOperacion;
     }
