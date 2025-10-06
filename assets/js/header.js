@@ -151,10 +151,18 @@
       return;
     }
 
+    const allowBrowserNavigation = shouldKeepDefaultNavigation(event, link);
+    if (!allowBrowserNavigation) {
+      event.preventDefault();
+    }
+
     closeDrawer(false);
 
-    if (shouldKeepDefaultNavigation(event, link)) {
-      return;
+    if (!allowBrowserNavigation) {
+      const targetHref = link.href;
+      window.requestAnimationFrame(() => {
+        window.location.assign(targetHref);
+      });
     }
   });
 
