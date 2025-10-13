@@ -7,55 +7,47 @@
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <header class="navbar" data-header>
-    <div class="inner container">
-      <a class="brand" href="index.html">
+  <header class="site-header" data-site-header>
+    <div class="container site-header__inner">
+      <a class="site-header__brand" href="index.html">
         <img src="assets/logo.png" alt="Gardet Propiedades" />
       </a>
-      <nav class="nav-links" data-nav-desktop>
-        <a href="arriendos.html">Arriendos</a>
-        <a href="venta.html">Ventas</a>
-        <a href="proyectos.html" class="is-active">Proyectos</a>
-        <a href="contacto.html" class="btn btn-primary">Contacto</a>
+      <nav class="site-header__nav" aria-label="Navegación principal">
+        <a href="arriendos.html" data-nav-link>Arriendos</a>
+        <a href="venta.html" data-nav-link>Ventas</a>
+        <a href="proyectos.html" data-nav-link>Proyectos</a>
+        <a href="contacto.html" class="button button--primary" data-nav-link>Contacto</a>
       </nav>
-      <button class="nav-toggle" type="button" aria-controls="mobile-drawer" aria-expanded="false" data-nav-toggle>
-        <span class="sr-only">Abrir menú principal</span>
-        <span class="nav-toggle__bar nav-toggle__bar--top"></span>
-        <span class="nav-toggle__bar nav-toggle__bar--middle"></span>
-        <span class="nav-toggle__bar nav-toggle__bar--bottom"></span>
+      <button class="site-header__toggle" type="button" aria-expanded="false" aria-controls="site-drawer" data-site-toggle>
+        <span class="sr-only">Abrir menú</span>
+        <span class="site-header__toggle-line" aria-hidden="true"></span>
       </button>
     </div>
-    <aside id="mobile-drawer" class="nav-drawer" data-nav-drawer aria-hidden="true">
-      <nav class="nav-drawer__menu">
-        <a href="arriendos.html">Arriendos</a>
-        <a href="venta.html">Ventas</a>
-        <a href="proyectos.html" class="is-active">Proyectos</a>
-        <a href="contacto.html" class="btn btn-primary">Contacto</a>
+    <aside id="site-drawer" class="site-drawer" data-site-drawer aria-hidden="true">
+      <span style="font-weight:700;">Menú</span>
+      <nav class="site-drawer__nav" aria-label="Navegación móvil">
+        <a href="arriendos.html" data-nav-link>Arriendos</a>
+        <a href="venta.html" data-nav-link>Ventas</a>
+        <a href="proyectos.html" data-nav-link>Proyectos</a>
+        <a href="contacto.html" class="button button--primary" data-nav-link>Contacto</a>
       </nav>
     </aside>
   </header>
 
-  <div class="drawer-overlay" data-drawer-overlay aria-hidden="true"></div>
-
   <main>
-    <section class="section section-theme-canvas">
+    <section class="section">
       <div class="container">
-        <h2 class="h2">Proyectos Inmobiliarios
-          <small>Descubre nuestros proyectos en venta</small>
-        </h2>
-        <div data-projects-grid class="projects-grid" aria-busy="true"></div>
+        <h1 class="section__title">Proyectos Gardet</h1>
+        <p class="section__lead">Conoce desarrollos exclusivos, con badges claros de estado y tipologías listas para invertir.</p>
+        <section class="project-grid" data-projects-grid aria-busy="false"></section>
       </div>
     </section>
   </main>
 
-  <a class="whatsapp" href="https://wa.me/56987829204" target="_blank" rel="noreferrer" aria-label="WhatsApp">
-    <img src="assets/icons/whatsapp.svg" class="wa-ico" alt="" aria-hidden="true" />
-    <span class="sr-only">Escríbenos por WhatsApp</span>
-  </a>
-
   <footer class="footer">
-    <p>Gardet Propiedades © 2025 — Todos los derechos reservados</p>
+    Gardet Propiedades © 2025 — Todos los derechos reservados
   </footer>
+
   <script src="assets/js/header.js" defer></script>
   <script src="assets/js/projects.js" defer></script>
 </body>

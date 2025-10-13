@@ -1,126 +1,159 @@
-(function(){
-  const qs = (s, c = document) => c.querySelector(s);
-  const qsa = (s, c = document) => Array.from(c.querySelectorAll(s));
+(() => {
+  const form = document.querySelector('[data-filters]');
+  const grid = document.querySelector('[data-results]');
+  if (!form || !grid) return;
 
-  const DATA_SRC = 'data/properties.json';
-  const UF_CLP = 38000; // ajustar manualmente cuando corresponda
+  const DATA_SOURCE = 'data/properties.json';
+  const UF_CLP = 38000;
 
-  const normalize = (s = '') => s.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().trim();
-  const formatUF = (n) => (n == null ? '—' : `UF ${new Intl.NumberFormat('es-CL', { maximumFractionDigits: 2 }).format(n)}`);
-  const formatCLP = (n) => (n == null ? '—' : new Intl.NumberFormat('es-CL', { style: 'currency', currency: 'CLP', maximumFractionDigits: 0 }).format(n));
+  const formatUF = (value) =>
+    typeof value === 'number'
+      ? `UF ${new Intl.NumberFormat('es-CL', { maximumFractionDigits: 2 }).format(value)}`
+      : null;
 
-  const parseQs = () => Object.fromEntries(new URLSearchParams(location.search));
-  const mapQueryParams = (qsObj = {}) => {
-    const obj = { ...qsObj };
+  const formatCLP = (value) =>
+    typeof value === 'number'
+      ? new Intl.NumberFormat('es-CL', {
+          style: 'currency',
+          currency: 'CLP',
+          maximumFractionDigits: 0,
+        }).format(value)
+      : null;
 
-    if (obj.precio_min != null && obj.precio_min !== '' && obj.min == null) {
-      obj.min = obj.precio_min;
-    }
-    if (obj.precio_max != null && obj.precio_max !== '' && obj.max == null) {
-      obj.max = obj.precio_max;
-    }
+  const normalize = (value = '') =>
+    value
+      .toString()
+      .normalize('NFD')
+      .replace(/[\u0300-\u036f]/g, '')
+      .toLowerCase()
+      .trim();
 
-    if (obj.operacion) {
-      const op = String(obj.operacion).toLowerCase();
-      if (op === 'venta') obj.operacion = 'Venta';
-      else if (op === 'arriendo') obj.operacion = 'Arriendo';
-    }
-
-    if (obj.moneda) {
-      obj.moneda = String(obj.moneda).toUpperCase();
-    }
-
-    if (!obj.ubicacion) {
-      const ubicacionParts = [obj.comuna, obj.barrio, obj.calle].filter((part) => part != null && String(part).trim() !== '');
-      if (ubicacionParts.length) {
-        obj.ubicacion = ubicacionParts.join(' ');
+  const getQueryObject = () => Object.fromEntries(new URLSearchParams(location.search));
+  const toQueryString = (values) => {
+    const params = new URLSearchParams();
+    Object.entries(values).forEach(([key, value]) => {
+      if (value !== undefined && value !== null && String(value).trim() !== '') {
+        params.set(key, String(value).trim());
       }
-    }
-
-    return obj;
+    });
+    return params.toString();
   };
-  const stringifyQs = (obj) => new URLSearchParams(obj).toString();
 
-  const getPrecio = (p, moneda) => {
-    if (moneda === 'UF') {
-      if (typeof p.precio_uf === 'number') return p.precio_uf;
-      if (typeof p.precio_clp === 'number') return p.precio_clp / UF_CLP;
+  const getComparablePrice = (property, currency) => {
+    if (currency === 'CLP') {
+      if (typeof property.precio_clp === 'number') return property.precio_clp;
+      if (typeof property.precio_uf === 'number') return property.precio_uf * UF_CLP;
       return null;
     }
-    if (typeof p.precio_clp === 'number') return p.precio_clp;
-    if (typeof p.precio_uf === 'number') return p.precio_uf * UF_CLP;
+    if (typeof property.precio_uf === 'number') return property.precio_uf;
+    if (typeof property.precio_clp === 'number') return property.precio_clp / UF_CLP;
     return null;
   };
 
-  let all = [];
-  let form;
-  let grid;
-  let pageOperacion = '';
-
-  const readForm = () => {
-    const fd = new FormData(form);
-    const obj = {};
-    for (const [k, v] of fd.entries()) {
-      if (v !== '') obj[k] = v;
-    }
-    return obj;
+  const bestMeters = (property) => {
+    if (typeof property.m2_util === 'number') return property.m2_util;
+    if (typeof property.m2_total === 'number') return property.m2_total;
+    if (typeof property.m2 === 'number') return property.m2;
+    return null;
   };
 
-  const applyFormFromQs = (qsObj) => {
-    Object.entries(qsObj).forEach(([k, v]) => {
-      const field = form.elements.namedItem(k);
+  const prettifyPrice = (property) => {
+    const labels = [];
+    const uf = formatUF(property.precio_uf);
+    const clp = formatCLP(property.precio_clp);
+    if (uf) labels.push(uf);
+    if (clp) labels.push(clp);
+    return labels.length ? labels.join(' · ') : 'Precio a consultar';
+  };
+
+  const labelBadge = (property) => {
+    const estado = property.estado ? property.estado.toString().toLowerCase() : '';
+    if (estado && estado !== 'disponible') {
+      return { label: estado.charAt(0).toUpperCase() + estado.slice(1), tone: 'muted' };
+    }
+    const operacion = property.operacion ? property.operacion.toString().toLowerCase() : '';
+    if (operacion === 'venta') return { label: 'En venta', tone: 'accent' };
+    if (operacion === 'arriendo') return { label: 'En arriendo', tone: 'accent' };
+    return { label: 'Disponible', tone: 'accent' };
+  };
+
+  const applyFormValues = (values) => {
+    Object.entries(values).forEach(([key, value]) => {
+      const field = form.elements.namedItem(key);
       if (!field) return;
       if (field instanceof RadioNodeList) {
-        field.value = v;
+        field.value = value;
       } else {
-        field.value = v;
+        field.value = value;
       }
     });
   };
 
-  const filterData = (params) => {
+  const readFormValues = () => {
+    const data = new FormData(form);
+    const values = {};
+    for (const [key, value] of data.entries()) {
+      if (value !== '') values[key] = value;
+    }
+    return values;
+  };
+
+  let catalog = [];
+  let defaultOperacion = '';
+
+  const filterCatalog = (params) => {
     const moneda = params.moneda || 'UF';
     const needle = normalize(params.ubicacion || '');
-    const minRaw = params.min ?? params.precio_min ?? null;
-    const maxRaw = params.max ?? params.precio_max ?? null;
-    const min = minRaw !== null && minRaw !== '' ? Number(minRaw) : null;
-    const max = maxRaw !== null && maxRaw !== '' ? Number(maxRaw) : null;
-    const dorms = params.dorms ? Number(params.dorms) : null;
-    const banos = params.banos ? Number(params.banos) : null;
+    const min = params.precio_min ? Number(params.precio_min) : null;
+    const max = params.precio_max ? Number(params.precio_max) : null;
+    const dorms = params.dormitorios ? Number(params.dormitorios) : null;
+    const baths = params.banos ? Number(params.banos) : null;
+    const operacion = params.operacion || defaultOperacion;
+    const tipo = params.tipo || '';
 
-    const filtered = all.filter((p) => {
-      if (p?.publicado !== true) return false;
+    const filtered = catalog.filter((property) => {
+      if (property.publicado === false) return false;
 
-      if (params.operacion && normalize(p.operacion) !== normalize(params.operacion)) return false;
-      if (params.tipo && p.tipo !== params.tipo) return false;
+      if (operacion && normalize(property.operacion) !== normalize(operacion)) {
+        return false;
+      }
+
+      if (tipo && normalize(property.tipo) !== normalize(tipo)) {
+        return false;
+      }
 
       if (needle) {
-        const hay = [p.comuna, p.barrio, p.calle, p.direccion].some((field) => normalize(field || '').includes(needle));
-        if (!hay) return false;
+        const hayCoincidencia = [property.comuna, property.barrio, property.calle, property.direccion]
+          .filter(Boolean)
+          .some((value) => normalize(value).includes(needle));
+        if (!hayCoincidencia) return false;
       }
 
-      const precio = getPrecio(p, moneda);
-      if (min != null || max != null) {
-        if (precio == null) return false;
-        if (min != null && precio < min) return false;
-        if (max != null && precio > max) return false;
+      const comparable = getComparablePrice(property, moneda);
+      if (min !== null || max !== null) {
+        if (comparable === null) return false;
+        if (min !== null && comparable < min) return false;
+        if (max !== null && comparable > max) return false;
       }
 
-      if (dorms != null) {
-        if (typeof p.dormitorios !== 'number' || p.dormitorios < dorms) return false;
+      if (dorms !== null) {
+        if (typeof property.dormitorios !== 'number' || property.dormitorios < dorms) {
+          return false;
+        }
       }
 
-      if (banos != null) {
-        if (typeof p.banos !== 'number' || p.banos < banos) return false;
+      if (baths !== null) {
+        if (typeof property.banos !== 'number' || property.banos < baths) {
+          return false;
+        }
       }
 
       return true;
     });
 
-    const orden = params.orden || 'precio-asc';
-    const monedaOrden = params.moneda || 'UF';
+    const order = params.orden || 'precio-asc';
 
-    const compareNullLast = (a, b) => {
+    const compareNullsLast = (a, b) => {
       if (a == null && b == null) return 0;
       if (a == null) return 1;
       if (b == null) return -1;
@@ -128,146 +161,154 @@
     };
 
     return filtered.sort((a, b) => {
-      if (orden === 'precio-asc' || orden === 'precio-desc') {
-        const pa = getPrecio(a, monedaOrden);
-        const pb = getPrecio(b, monedaOrden);
-        const nullCmp = compareNullLast(pa, pb);
-        if (nullCmp !== 0) return nullCmp;
-        if (pa == null || pb == null) return 0;
-        return orden === 'precio-asc' ? pa - pb : pb - pa;
+      if (order === 'm2-asc' || order === 'm2-desc') {
+        const aM = bestMeters(a);
+        const bM = bestMeters(b);
+        const nullCheck = compareNullsLast(aM, bM);
+        if (nullCheck !== 0) return nullCheck;
+        if (aM == null || bM == null) return 0;
+        return order === 'm2-asc' ? aM - bM : bM - aM;
       }
 
-      const ma = typeof a.m2_util === 'number' ? a.m2_util : null;
-      const mb = typeof b.m2_util === 'number' ? b.m2_util : null;
-      const nullCmp = compareNullLast(ma, mb);
-      if (nullCmp !== 0) return nullCmp;
-      if (ma == null || mb == null) return 0;
-      return orden === 'm2-asc' ? ma - mb : mb - ma;
+      const aP = getComparablePrice(a, moneda);
+      const bP = getComparablePrice(b, moneda);
+      const nullCheck = compareNullsLast(aP, bP);
+      if (nullCheck !== 0) return nullCheck;
+      if (aP == null || bP == null) return 0;
+      return order === 'precio-asc' ? aP - bP : bP - aP;
     });
   };
-
-  const titleCase = (s = '') => (s ? s.charAt(0).toUpperCase() + s.slice(1) : '');
 
   const render = (rows, params) => {
     const moneda = params.moneda || 'UF';
-    const fmt = moneda === 'UF' ? formatUF : formatCLP;
-
     if (!rows.length) {
       grid.innerHTML = `
         <div class="card no-results">
-          <h3>Sin resultados</h3>
-          <p>Ajusta los filtros o limpia la búsqueda para ver más propiedades.</p>
-          <button class="btn" type="button" data-clear>Limpiar filtros</button>
+          <h3>Sin propiedades que coincidan</h3>
+          <p>Prueba con otro rango de valores o limpia los filtros seleccionados.</p>
+          <button type="button" class="button button--ghost" data-clear>Limpiar filtros</button>
         </div>
       `;
+      const clear = grid.querySelector('[data-clear]');
+      clear?.addEventListener('click', clearFilters);
       grid.setAttribute('aria-busy', 'false');
-      const clearBtn = grid.querySelector('[data-clear]');
-      if (clearBtn) clearBtn.addEventListener('click', onClear);
       return;
     }
 
-    const cards = rows.map((p) => {
-      const precio = getPrecio(p, moneda);
-      const foto = (Array.isArray(p.fotos) && p.fotos[0]) || 'assets/fotos/placeholder.jpg';
-      const sub = [p.comuna, p.barrio || p.calle].filter(Boolean).join(' · ');
-      const dorms = typeof p.dormitorios === 'number' ? p.dormitorios : '—';
-      const banos = typeof p.banos === 'number' ? p.banos : '—';
-      const m2 = typeof p.m2_util === 'number' && !Number.isNaN(p.m2_util) ? p.m2_util : '—';
-      const title = p.titulo || `${p.tipo || 'Propiedad'} en ${p.comuna || ''}`.trim();
-      const estadoBadge = p.estado && p.estado.toLowerCase() !== 'disponible'
-        ? `<span class="badge badge-vendido">${titleCase(p.estado)}</span>`
-        : '';
+    const cards = rows
+      .map((property) => {
+        const { label, tone } = labelBadge(property);
+        const badgeClass = tone === 'accent' ? 'property-card__badge property-card__badge--accent' : 'property-card__badge property-card__badge--muted';
+        const image = Array.isArray(property.fotos) && property.fotos.length ? property.fotos[0] : 'assets/fotos/placeholder.jpg';
+        const title = property.titulo || `${property.tipo || 'Propiedad'} en ${property.comuna || ''}`.trim();
+        const ubicacion = [property.comuna, property.barrio, property.calle]
+          .filter((part) => part && String(part).trim() !== '')
+          .join(' · ');
+        const dorms = typeof property.dormitorios === 'number' ? `${property.dormitorios}D` : '—D';
+        const baths = typeof property.banos === 'number' ? `${property.banos}B` : '—B';
+        const metros = bestMeters(property);
+        const metrosLabel = metros ? `${metros} m²` : '— m²';
+        const price = prettifyPrice(property);
+        const contactUrl = `contacto.html?prop=${encodeURIComponent(property.slug || title)}`;
 
-      return `
-        <article class="card property-card" data-slug="${p.slug}">
-          <figure class="property-card__media ratio">
-            <img src="${foto}" alt="${title}" loading="lazy">
-          </figure>
-          <div class="property-card__content">
-            <div class="property-card__badges">
-              <span class="badge">${p.operacion || 'Operación'}</span>
-              ${estadoBadge}
+        return `
+          <article class="property-card">
+            <figure class="property-card__media">
+              <div class="ratio-4-3">
+                <img src="${image}" alt="${title}" loading="lazy" />
+              </div>
+              <span class="${badgeClass}">${label}</span>
+            </figure>
+            <div class="property-card__body">
+              <h3 class="property-card__title">${title}</h3>
+              <p class="property-card__location">${ubicacion || property.direccion || ''}</p>
+              <p class="property-card__price">${price}</p>
+              <p class="property-card__meta">${moneda === 'UF' ? 'Valores en UF' : 'Valores en CLP'}</p>
+              <div class="property-card__features">
+                <span>${dorms}</span>
+                <span>${baths}</span>
+                <span>${metrosLabel}</span>
+              </div>
+              <div class="property-card__actions">
+                <a class="button button--ghost button--block" href="${contactUrl}">Solicitar información</a>
+              </div>
             </div>
-            <h3>${title}</h3>
-            <p class="property-card__location">${sub || p.direccion || ''}</p>
-            <p class="property-card__price">${fmt(precio)}</p>
-            <p class="property-card__details">${dorms}D · ${banos}B · ${m2} m²</p>
-            <div class="property-card__actions">
-              <a class="btn" href="contacto.html?prop=${encodeURIComponent(p.slug)}">Ver detalles</a>
-            </div>
-          </div>
-        </article>
-      `;
-    });
+          </article>
+        `;
+      })
+      .join('');
 
-    grid.innerHTML = cards.join('');
+    grid.innerHTML = cards;
     grid.setAttribute('aria-busy', 'false');
   };
 
-  const syncAndRender = () => {
-    const params = readForm();
-    const qsStr = stringifyQs(params);
-    history.replaceState(null, '', qsStr ? `?${qsStr}` : location.pathname);
+  const syncState = () => {
+    const values = readFormValues();
+    const query = toQueryString(values);
+    history.replaceState(null, '', query ? `?${query}` : location.pathname);
     grid.setAttribute('aria-busy', 'true');
-    const rows = filterData(params);
-    render(rows, params);
+    const rows = filterCatalog(values);
+    render(rows, values);
   };
 
-  const onSubmit = (event) => {
-    if (event) event.preventDefault();
-    syncAndRender();
-  };
-
-  const onClear = () => {
+  const clearFilters = () => {
     form.reset();
-    if (pageOperacion && form.elements.operacion) {
-      form.elements.operacion.value = pageOperacion;
+    if (defaultOperacion) {
+      const operacionField = form.elements.namedItem('operacion');
+      if (operacionField) {
+        operacionField.value = defaultOperacion;
+      }
     }
     history.replaceState(null, '', location.pathname);
     grid.setAttribute('aria-busy', 'true');
-    const params = readForm();
-    const rows = filterData(params);
-    render(rows, params);
+    const values = readFormValues();
+    const rows = filterCatalog(values);
+    render(rows, values);
   };
 
-  const boot = async () => {
-    form = qs('[data-filters]');
-    grid = qs('[data-results]');
-    if (!form || !grid) return;
+  form.addEventListener('submit', (event) => {
+    event.preventDefault();
+    syncState();
+  });
 
+  form.addEventListener('change', syncState);
+
+  form.querySelectorAll('[data-clear]').forEach((button) => {
+    button.addEventListener('click', clearFilters);
+  });
+
+  const boot = async () => {
     const pathname = location.pathname;
-    const isArriendo = pathname.includes('arriendos');
-    const isVenta = pathname.includes('venta');
-    pageOperacion = isArriendo ? 'Arriendo' : isVenta ? 'Venta' : '';
+    if (pathname.includes('arriendos')) {
+      defaultOperacion = 'Arriendo';
+    } else if (pathname.includes('venta')) {
+      defaultOperacion = 'Venta';
+    }
+
+    grid.setAttribute('aria-busy', 'true');
 
     try {
-      grid.setAttribute('aria-busy', 'true');
-      const res = await fetch(DATA_SRC, { cache: 'no-cache' });
-      all = await res.json();
+      const response = await fetch(DATA_SOURCE, { cache: 'no-cache' });
+      catalog = await response.json();
     } catch (error) {
-      console.error('No se pudo cargar el catálogo de propiedades', error);
-      grid.innerHTML = '<p class="card error">No pudimos cargar las propiedades. Intenta nuevamente.</p>';
+      console.error('Error cargando propiedades', error);
+      grid.innerHTML = `
+        <div class="card no-results">
+          <h3>No pudimos cargar las propiedades</h3>
+          <p>Revisa tu conexión e inténtalo nuevamente.</p>
+        </div>
+      `;
       grid.setAttribute('aria-busy', 'false');
       return;
     }
 
-    const qsObj = mapQueryParams(parseQs());
-    if (!qsObj.operacion && pageOperacion) {
-      qsObj.operacion = pageOperacion;
+    const queryValues = getQueryObject();
+    if (!queryValues.operacion && defaultOperacion) {
+      queryValues.operacion = defaultOperacion;
     }
 
-    applyFormFromQs(qsObj);
-
-    form.addEventListener('submit', onSubmit);
-    form.addEventListener('change', (event) => {
-      if (['moneda', 'orden'].includes(event.target.name)) {
-        syncAndRender();
-      }
-    });
-
-    qsa('[data-clear]', form).forEach((btn) => btn.addEventListener('click', onClear));
-
-    syncAndRender();
+    applyFormValues(queryValues);
+    syncState();
   };
 
   boot();
