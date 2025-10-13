@@ -7,106 +7,128 @@
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <header class="navbar" data-header>
-    <div class="inner container">
-      <a class="brand" href="index.html">
+  <header class="site-header" data-site-header>
+    <div class="container site-header__inner">
+      <a class="site-header__brand" href="index.html">
         <img src="assets/logo.png" alt="Gardet Propiedades" />
       </a>
-      <nav class="nav-links" data-nav-desktop>
-        <a href="arriendos.html" class="is-active">Arriendos</a>
-        <a href="venta.html">Ventas</a>
-        <a href="proyectos.html">Proyectos</a>
-        <a href="contacto.html" class="btn btn-primary">Contacto</a>
+      <nav class="site-header__nav" aria-label="Navegación principal">
+        <a href="arriendos.html" data-nav-link>Arriendos</a>
+        <a href="venta.html" data-nav-link>Ventas</a>
+        <a href="proyectos.html" data-nav-link>Proyectos</a>
+        <a href="contacto.html" class="button button--primary" data-nav-link>Contacto</a>
       </nav>
-      <button class="nav-toggle" type="button" aria-controls="mobile-drawer" aria-expanded="false" data-nav-toggle>
-        <span class="sr-only">Abrir menú principal</span>
-        <span class="nav-toggle__bar nav-toggle__bar--top"></span>
-        <span class="nav-toggle__bar nav-toggle__bar--middle"></span>
-        <span class="nav-toggle__bar nav-toggle__bar--bottom"></span>
+      <button class="site-header__toggle" type="button" aria-expanded="false" aria-controls="site-drawer" data-site-toggle>
+        <span class="sr-only">Abrir menú</span>
+        <span class="site-header__toggle-line" aria-hidden="true"></span>
       </button>
     </div>
-    <aside id="mobile-drawer" class="nav-drawer" data-nav-drawer aria-hidden="true">
-      <nav class="nav-drawer__menu">
-        <a href="arriendos.html" class="is-active">Arriendos</a>
-        <a href="venta.html">Ventas</a>
-        <a href="proyectos.html">Proyectos</a>
-        <a href="contacto.html" class="btn btn-primary">Contacto</a>
+    <aside id="site-drawer" class="site-drawer" data-site-drawer aria-hidden="true">
+      <span style="font-weight:700;">Menú</span>
+      <nav class="site-drawer__nav" aria-label="Navegación móvil">
+        <a href="arriendos.html" data-nav-link>Arriendos</a>
+        <a href="venta.html" data-nav-link>Ventas</a>
+        <a href="proyectos.html" data-nav-link>Proyectos</a>
+        <a href="contacto.html" class="button button--primary" data-nav-link>Contacto</a>
       </nav>
     </aside>
   </header>
 
-  <div class="drawer-overlay" data-drawer-overlay aria-hidden="true"></div>
-
   <main>
-    <section class="section section-theme-canvas">
+    <section class="section">
       <div class="container">
-        <h1>Arriendos</h1>
-        <p class="lead">Explora propiedades en arriendo filtrando por operación, tipo, ubicación y rango de precio.</p>
+        <h1 class="section__title">Propiedades en arriendo</h1>
+        <p class="section__lead">Filtra por comuna, programa, rangos de precio y ordena los resultados sin recargar la página.</p>
 
-        <form class="filters" id="filters-form" data-filters>
-          <select name="operacion" data-filter>
-            <option value="">Operación</option>
-            <option value="Venta">Venta</option>
-            <option value="Arriendo">Arriendo</option>
-          </select>
-
-          <select name="tipo" data-filter>
-            <option value="">Tipo</option>
-            <option>Departamento</option>
-            <option>Casa</option>
-            <option>Oficina</option>
-            <option>Terreno</option>
-            <option>Local</option>
-            <option>Estudio</option>
-          </select>
-
-          <input type="text" name="ubicacion" placeholder="Comuna, barrio o calle" data-filter />
-
-          <div class="price-row">
-            <input type="number" min="0" step="1" name="min" placeholder="Mínimo" data-filter />
-            <input type="number" min="0" step="1" name="max" placeholder="Máximo" data-filter />
-            <select name="moneda" data-filter>
+        <form class="filters" data-filters>
+          <div class="form-field">
+            <label for="flt_operacion">Operación</label>
+            <select id="flt_operacion" name="operacion">
+              <option value="Arriendo">Arriendo</option>
+              <option value="Venta">Venta</option>
+            </select>
+          </div>
+          <div class="form-field">
+            <label for="flt_tipo">Tipo</label>
+            <select id="flt_tipo" name="tipo">
+              <option value="">Todos</option>
+              <option value="Casa">Casa</option>
+              <option value="Departamento">Departamento</option>
+              <option value="Oficina">Oficina</option>
+              <option value="Terreno">Terreno</option>
+              <option value="Local">Local</option>
+              <option value="Estudio">Estudio</option>
+            </select>
+          </div>
+          <div class="form-field form-field--wide">
+            <label for="flt_ubicacion">Ubicación</label>
+            <input id="flt_ubicacion" name="ubicacion" type="text" placeholder="Comuna, barrio o calle" />
+          </div>
+          <div class="form-field">
+            <label for="flt_precio_min">Precio mínimo</label>
+            <input id="flt_precio_min" name="precio_min" type="number" min="0" placeholder="0" inputmode="numeric" />
+          </div>
+          <div class="form-field">
+            <label for="flt_precio_max">Precio máximo</label>
+            <input id="flt_precio_max" name="precio_max" type="number" min="0" placeholder="500" inputmode="numeric" />
+          </div>
+          <div class="form-field">
+            <label for="flt_moneda">Moneda</label>
+            <select id="flt_moneda" name="moneda">
               <option value="UF">UF</option>
               <option value="CLP">CLP</option>
             </select>
           </div>
-
-          <select name="dorms" data-filter>
-            <option value="">Dormitorios</option>
-            <option value="1">1+</option>
-            <option value="2">2+</option>
-            <option value="3">3+</option>
-            <option value="4">4+</option>
-          </select>
-
-          <select name="banos" data-filter>
-            <option value="">Baños</option>
-            <option value="1">1+</option>
-            <option value="2">2+</option>
-            <option value="3">3+</option>
-          </select>
-
-          <select name="orden" data-filter>
-            <option value="precio-asc">Precio: menor a mayor</option>
-            <option value="precio-desc">Precio: mayor a menor</option>
-            <option value="m2-desc">m²: mayor a menor</option>
-            <option value="m2-asc">m²: menor a mayor</option>
-          </select>
-
-          <button type="submit" class="btn btn-primary">Filtrar</button>
-          <button type="button" class="btn" data-clear>Limpiar filtros</button>
+          <div class="form-field">
+            <label for="flt_dormitorios">Dormitorios</label>
+            <select id="flt_dormitorios" name="dormitorios">
+              <option value="">Todos</option>
+              <option value="1">1+</option>
+              <option value="2">2+</option>
+              <option value="3">3+</option>
+              <option value="4">4+</option>
+              <option value="5">5+</option>
+            </select>
+          </div>
+          <div class="form-field">
+            <label for="flt_banos">Baños</label>
+            <select id="flt_banos" name="banos">
+              <option value="">Todos</option>
+              <option value="1">1+</option>
+              <option value="2">2+</option>
+              <option value="3">3+</option>
+              <option value="4">4+</option>
+            </select>
+          </div>
+          <div class="form-field form-field--wide">
+            <label for="flt_orden">Ordenar</label>
+            <select id="flt_orden" name="orden">
+              <option value="precio-asc">Precio: menor a mayor</option>
+              <option value="precio-desc">Precio: mayor a menor</option>
+              <option value="m2-desc">Superficie: mayor a menor</option>
+              <option value="m2-asc">Superficie: menor a mayor</option>
+            </select>
+          </div>
+          <div class="form-field form-field--submit">
+            <label class="sr-only" for="flt_submit">Aplicar filtros</label>
+            <button id="flt_submit" type="submit" class="button button--primary">Aplicar filtros</button>
+          </div>
+          <div class="form-field">
+            <label class="sr-only" for="flt_clear">Limpiar filtros</label>
+            <button id="flt_clear" type="button" class="button button--ghost button--block" data-clear>Limpiar</button>
+          </div>
         </form>
 
-        <section class="cards-grid" data-results aria-busy="false"></section>
+        <section class="property-grid" data-results aria-busy="false"></section>
       </div>
     </section>
   </main>
 
   <footer class="footer">
-    <p>Gardet Propiedades © 2025 — Todos los derechos reservados</p>
+    Gardet Propiedades © 2025 — Todos los derechos reservados
   </footer>
+
   <script src="assets/js/header.js" defer></script>
-  <script src="assets/js/mobile-fixes.js" defer></script>
   <script src="assets/js/filters.js" defer></script>
 </body>
 </html>

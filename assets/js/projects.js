@@ -1,15 +1,9 @@
-(function () {
+(() => {
   const grid = document.querySelector('[data-projects-grid]');
   if (!grid) return;
 
   const PROJECTS_SOURCE = 'data/projects.json';
   const FALLBACK_IMAGE = 'assets/fotos/placeholder-project.svg';
-
-  const setBusy = (isBusy) => {
-    grid.setAttribute('aria-busy', isBusy ? 'true' : 'false');
-  };
-
-  setBusy(true);
 
   const formatNumber = (value) => {
     if (typeof value !== 'number' || Number.isNaN(value)) return null;
@@ -30,100 +24,107 @@
     return 'Valores por confirmar';
   };
 
-  const formatEntrega = (value) => {
-    if (!value) return null;
-    if (/^\d{4}-\d{2}$/.test(value)) {
-      const [year, month] = value.split('-').map(Number);
-      const date = new Date(year, month - 1, 1);
-      return new Intl.DateTimeFormat('es-CL', { month: 'long', year: 'numeric' }).format(date);
+  const normalizeStatus = (status = '') => status.toString().toLowerCase();
+
+  const getBadge = (status) => {
+    const normalized = normalizeStatus(status);
+    if (!normalized) {
+      return { label: 'Proyecto', tone: 'muted' };
     }
-    return value; // permite "Inmediata" u otros textos
-  };
 
-  const getStatusBadgeClass = (status) => {
-    if (!status) return '';
-    const normalized = status.toLowerCase();
-    if (normalized.includes('inmediata')) return 'badge-status';
-    if (normalized.includes('verde') || normalized.includes('pronta') || normalized.includes('lanzamiento')) return 'badge-soft';
-    return 'badge-muted';
-  };
+    if (normalized.includes('inmediata')) {
+      return { label: 'Entrega inmediata', tone: 'accent' };
+    }
 
-  const createProjectCard = (project) => {
-    const {
-      nombre,
-      ubicacion,
-      estado,
-      tipologias,
-      desde_uf,
-      hasta_uf,
-      entrega,
-      fotos,
-      id,
-    } = project;
+    if (normalized.includes('verde')) {
+      return { label: 'En verde', tone: 'accent' };
+    }
 
-    const title = nombre || 'Proyecto inmobiliario';
-    const imageSrc = Array.isArray(fotos) && fotos.length ? fotos[0] : FALLBACK_IMAGE;
-    const statusClass = getStatusBadgeClass(estado);
-    const entregaFormatted = formatEntrega(entrega);
-    const rangeLabel = formatUfRange(desde_uf, hasta_uf);
-    const contactTarget = id || title;
-    const contactUrl = `contacto.html?project=${encodeURIComponent(contactTarget)}`;
-
-    return `
-      <article class="card project-card">
-        <figure class="project-card__media">
-          <div class="ratio-4-3">
-            <img src="${imageSrc}" alt="${title}" loading="lazy" />
-          </div>
-          ${estado ? `<span class="badge ${statusClass} project-card__status">${estado}</span>` : ''}
-        </figure>
-        <div class="project-card__body">
-          <div class="project-card__headline">
-            <h3>${title}</h3>
-            ${ubicacion ? `<p class="project-card__location">${ubicacion}</p>` : ''}
-          </div>
-          <p class="project-card__price">Rango UF: ${rangeLabel}</p>
-          ${
-            tipologias || entregaFormatted
-              ? `<p class="project-card__meta">
-                   ${tipologias ? `Tipologías ${tipologias}` : ''}${tipologias && entregaFormatted ? ' • ' : ''}
-                   ${entregaFormatted ? `Entrega ${entregaFormatted}` : ''}
-                 </p>`
-              : ''
-          }
-          <div class="project-card__actions">
-            <a class="btn btn-primary" href="${contactUrl}">Solicitar información</a>
-          </div>
-        </div>
-      </article>
-    `;
+    return { label: status, tone: 'muted' };
   };
 
   const renderProjects = (projects) => {
-    if (!Array.isArray(projects) || !projects.length) {
+    if (!Array.isArray(projects) || projects.length === 0) {
       grid.innerHTML = `
         <div class="card no-results">
           <h3>Pronto más proyectos</h3>
-          <p>Estamos actualizando nuestro portafolio inmobiliario. Escríbenos para recibir novedades.</p>
-        </div>`;
+          <p>Estamos incorporando nuevos desarrollos. Escríbenos para recibir novedades antes del lanzamiento.</p>
+        </div>
+      `;
+      grid.setAttribute('aria-busy', 'false');
       return;
     }
-    grid.innerHTML = projects.map(createProjectCard).join('');
+
+    const cards = projects
+      .map((project) => {
+        const {
+          nombre,
+          ubicacion,
+          estado,
+          tipologias,
+          desde_uf,
+          hasta_uf,
+          entrega,
+          fotos,
+          id,
+        } = project;
+
+        const title = nombre || 'Proyecto inmobiliario';
+        const imageSrc = Array.isArray(fotos) && fotos.length ? fotos[0] : FALLBACK_IMAGE;
+        const { label, tone } = getBadge(estado);
+        const badgeClass = tone === 'accent' ? 'project-card__badge project-card__badge--accent' : 'project-card__badge';
+        const rangeLabel = formatUfRange(desde_uf, hasta_uf);
+        const entregaLabel = entrega ? `Entrega ${entrega}` : '';
+        const metaParts = [tipologias ? `Tipologías ${tipologias}` : '', entregaLabel].filter(Boolean);
+        const meta = metaParts.join(' • ');
+        const contactTarget = id || title;
+        const contactUrl = `contacto.html?project=${encodeURIComponent(contactTarget)}`;
+
+        return `
+          <article class="project-card">
+            <figure class="project-card__media">
+              <div class="ratio-4-3">
+                <img src="${imageSrc}" alt="${title}" loading="lazy" />
+              </div>
+              <span class="${badgeClass}">${label}</span>
+            </figure>
+            <div class="project-card__body">
+              <h3 class="project-card__title">${title}</h3>
+              ${ubicacion ? `<p class="project-card__location">${ubicacion}</p>` : ''}
+              <p class="project-card__price">${rangeLabel}</p>
+              ${meta ? `<p class="project-card__meta">${meta}</p>` : ''}
+              <div class="project-card__actions">
+                <a class="button button--ghost button--block" href="${contactUrl}">Quiero información</a>
+              </div>
+            </div>
+          </article>
+        `;
+      })
+      .join('');
+
+    grid.innerHTML = cards;
+    grid.setAttribute('aria-busy', 'false');
   };
 
-  fetch(PROJECTS_SOURCE)
-    .then((response) => {
+  const boot = async () => {
+    grid.setAttribute('aria-busy', 'true');
+
+    try {
+      const response = await fetch(PROJECTS_SOURCE, { cache: 'no-cache' });
       if (!response.ok) throw new Error(`HTTP ${response.status}`);
-      return response.json();
-    })
-    .then(renderProjects)
-    .catch((error) => {
-      console.error('Error cargando proyectos:', error);
+      const projects = await response.json();
+      renderProjects(projects);
+    } catch (error) {
+      console.error('Error cargando proyectos', error);
       grid.innerHTML = `
         <div class="card no-results">
           <h3>No pudimos cargar los proyectos</h3>
-          <p>Intenta nuevamente en unos minutos o contáctanos directamente por WhatsApp.</p>
-        </div>`;
-    })
-    .finally(() => setBusy(false));
+          <p>Inténtalo nuevamente o escríbenos por WhatsApp para recibir asistencia inmediata.</p>
+        </div>
+      `;
+      grid.setAttribute('aria-busy', 'false');
+    }
+  };
+
+  boot();
 })();

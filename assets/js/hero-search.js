@@ -12,12 +12,16 @@
   form.addEventListener('submit', (e) => {
     e.preventDefault();
 
+    if (!form.reportValidity()) {
+      return;
+    }
+
     const operacionRaw = form.operacion?.value || '';
-    const operacion = operacionRaw.toLowerCase();
-    const destino = operacion === 'venta' ? 'venta.html' : 'arriendos.html';
+    const operacionLower = operacionRaw.toLowerCase();
+    const destino = operacionLower === 'venta' ? 'venta.html' : 'arriendos.html';
 
     const qs = {
-      operacion: operacion || '',
+      operacion: operacionRaw || '',
       tipo: form.tipo?.value || '',
       ubicacion: form.ubicacion?.value || '',
       precio_min: form.precio_min?.value || '',
